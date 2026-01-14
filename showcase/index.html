@@ -43,6 +43,37 @@
         radial-gradient(ellipse at 50% 50%, rgba(255, 209, 118, 0.2) 0%, transparent 70%),
         linear-gradient(180deg, #FDFCFA 0%, #F8F7F5 100%);
 
+      /* ─── Soft Vertical Gradients ─── */
+      --bg-morning: linear-gradient(180deg, #FDFCFA 0%, #E8EBFD 50%, #D4DAFC 100%);
+      --bg-sunset: linear-gradient(180deg, #FFF3D6 0%, #FFE4A8 50%, #DFCEE4 100%);
+      --bg-forest: linear-gradient(180deg, #F2F8F1 0%, #D2E4CF 60%, #E4EFE2 100%);
+      --bg-dreamy: linear-gradient(180deg, #F5F0F7 0%, #DFCEE4 50%, #B3BCF7 100%);
+      --bg-warm: linear-gradient(180deg, #FFFFFF 0%, #FFF3D6 40%, #FFD176 100%);
+
+      /* ─── Mesh Gradients ─── */
+      --bg-aurora: radial-gradient(ellipse at 0% 0%, rgba(179, 188, 247, 0.6) 0%, transparent 50%),
+                   radial-gradient(ellipse at 100% 100%, rgba(210, 228, 207, 0.5) 0%, transparent 50%),
+                   radial-gradient(ellipse at 50% 80%, rgba(223, 206, 228, 0.4) 0%, transparent 40%),
+                   linear-gradient(180deg, #FDFCFA 0%, #F8F7F5 100%);
+      --bg-golden-hour: radial-gradient(ellipse at 70% 20%, rgba(255, 209, 118, 0.5) 0%, transparent 40%),
+                        radial-gradient(ellipse at 20% 80%, rgba(223, 206, 228, 0.4) 0%, transparent 50%),
+                        radial-gradient(ellipse at 90% 90%, rgba(210, 228, 207, 0.3) 0%, transparent 40%),
+                        linear-gradient(180deg, #FFFFFF 0%, #FFF3D6 100%);
+      --bg-serenity: radial-gradient(ellipse at 10% 30%, rgba(179, 188, 247, 0.5) 0%, transparent 45%),
+                     radial-gradient(ellipse at 80% 70%, rgba(223, 206, 228, 0.5) 0%, transparent 45%),
+                     linear-gradient(180deg, #FDFCFA 0%, #E8EBFD 100%);
+      --bg-garden: radial-gradient(ellipse at 30% 20%, rgba(210, 228, 207, 0.6) 0%, transparent 50%),
+                   radial-gradient(ellipse at 70% 80%, rgba(255, 228, 168, 0.4) 0%, transparent 50%),
+                   linear-gradient(180deg, #F2F8F1 0%, #E4EFE2 100%);
+      --bg-meditation: radial-gradient(circle at 50% 0%, rgba(179, 188, 247, 0.4) 0%, transparent 60%),
+                       radial-gradient(circle at 50% 100%, rgba(255, 209, 118, 0.3) 0%, transparent 50%),
+                       linear-gradient(180deg, #FDFCFA 0%, #F5F0F7 100%);
+
+      /* ─── Diagonal Gradients ─── */
+      --bg-diagonal-sunrise: linear-gradient(135deg, #FFF3D6 0%, #FFE4A8 30%, #DFCEE4 70%, #B3BCF7 100%);
+      --bg-diagonal-nature: linear-gradient(135deg, #E4EFE2 0%, #D2E4CF 40%, #D4DAFC 100%);
+      --bg-diagonal-soft: linear-gradient(135deg, #FFFFFF 0%, #F5F0F7 50%, #E8EBFD 100%);
+
       /* Glass */
       --glass-white: rgba(255, 255, 255, 0.7);
       --glass-white-strong: rgba(255, 255, 255, 0.85);
@@ -877,6 +908,54 @@
       color: white;
     }
 
+    /* ─────────────────────────────────────────────────────────────────────────
+       BACKGROUND GRADIENTS PREVIEW
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .gradient-preview {
+      width: 100%;
+      height: 200px;
+      border-radius: var(--radius-xl);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-glass);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gradient-preview .gradient-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-ink);
+      padding: 8px 16px;
+      background: var(--glass-white-strong);
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(8px);
+    }
+
+    .gradient-preview .gradient-var {
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 4px 12px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: var(--radius-full);
+      font-family: monospace;
+    }
+
+    .gradient-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .gradient-preview-tall {
+      height: 320px;
+    }
+
     /* Footer */
     .showcase-footer {
       text-align: center;
@@ -946,6 +1025,83 @@
           <div class="color-swatch dark-text" style="background: linear-gradient(180deg, #E4EFE2 0%, #D2E4CF 100%); width: 100px;">Sage</div>
           <div class="color-swatch dark-text" style="background: linear-gradient(180deg, #D4DAFC 0%, #B3BCF7 100%); width: 100px;">Lavender</div>
           <div class="color-swatch dark-text" style="background: linear-gradient(180deg, #FFF3D6 0%, #FFD176 50%, #E5B85A 100%); width: 100px;">Sunrise</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         BACKGROUND GRADIENTS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <h2 class="section-title">Background Gradients</h2>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Soft Vertical</h3>
+        <div class="gradient-grid">
+          <div class="gradient-preview" style="background: var(--bg-morning);">
+            <span class="gradient-name">Morning Calm</span>
+            <span class="gradient-var">--bg-morning</span>
+          </div>
+          <div class="gradient-preview" style="background: var(--bg-sunset);">
+            <span class="gradient-name">Sunset Glow</span>
+            <span class="gradient-var">--bg-sunset</span>
+          </div>
+          <div class="gradient-preview" style="background: var(--bg-forest);">
+            <span class="gradient-name">Forest Mist</span>
+            <span class="gradient-var">--bg-forest</span>
+          </div>
+          <div class="gradient-preview" style="background: var(--bg-dreamy);">
+            <span class="gradient-name">Dreamy Lilac</span>
+            <span class="gradient-var">--bg-dreamy</span>
+          </div>
+          <div class="gradient-preview" style="background: var(--bg-warm);">
+            <span class="gradient-name">Warm Honey</span>
+            <span class="gradient-var">--bg-warm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Mesh Gradients (Multi-layer)</h3>
+        <div class="gradient-grid">
+          <div class="gradient-preview gradient-preview-tall" style="background: var(--bg-aurora);">
+            <span class="gradient-name">Aurora</span>
+            <span class="gradient-var">--bg-aurora</span>
+          </div>
+          <div class="gradient-preview gradient-preview-tall" style="background: var(--bg-golden-hour);">
+            <span class="gradient-name">Golden Hour</span>
+            <span class="gradient-var">--bg-golden-hour</span>
+          </div>
+          <div class="gradient-preview gradient-preview-tall" style="background: var(--bg-serenity);">
+            <span class="gradient-name">Serenity</span>
+            <span class="gradient-var">--bg-serenity</span>
+          </div>
+          <div class="gradient-preview gradient-preview-tall" style="background: var(--bg-garden);">
+            <span class="gradient-name">Garden</span>
+            <span class="gradient-var">--bg-garden</span>
+          </div>
+          <div class="gradient-preview gradient-preview-tall" style="background: var(--bg-meditation);">
+            <span class="gradient-name">Meditation</span>
+            <span class="gradient-var">--bg-meditation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Diagonal</h3>
+        <div class="gradient-grid">
+          <div class="gradient-preview" style="background: var(--bg-diagonal-sunrise);">
+            <span class="gradient-name">Diagonal Sunrise</span>
+            <span class="gradient-var">--bg-diagonal-sunrise</span>
+          </div>
+          <div class="gradient-preview" style="background: var(--bg-diagonal-nature);">
+            <span class="gradient-name">Diagonal Nature</span>
+            <span class="gradient-var">--bg-diagonal-nature</span>
+          </div>
+          <div class="gradient-preview" style="background: var(--bg-diagonal-soft);">
+            <span class="gradient-name">Diagonal Soft</span>
+            <span class="gradient-var">--bg-diagonal-soft</span>
+          </div>
         </div>
       </div>
     </section>
