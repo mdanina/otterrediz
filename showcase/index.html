@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balansity Design System Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════════
+       DESIGN TOKENS (CSS Variables)
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    :root {
+      /* Primitives */
+      --primitive-mint-50: 180 35% 97%;
+      --primitive-mint-100: 180 35% 93%;
+      --primitive-mint-200: 180 32% 85%;
+      --primitive-mint-300: 180 30% 75%;
+      --primitive-mint-400: 180 28% 65%;
+
+      --primitive-lavender-100: 260 40% 93%;
+      --primitive-lavender-200: 260 35% 85%;
+      --primitive-lavender-300: 260 30% 75%;
+
+      --primitive-coral-100: 15 85% 93%;
+      --primitive-coral-200: 15 80% 85%;
+      --primitive-coral-300: 15 75% 75%;
+      --primitive-coral-400: 15 70% 65%;
+      --primitive-coral-500: 15 65% 55%;
+
+      --primitive-yellow-100: 45 95% 90%;
+      --primitive-yellow-200: 45 90% 80%;
+      --primitive-yellow-300: 45 85% 70%;
+      --primitive-yellow-400: 45 80% 60%;
+
+      --primitive-green-50: 145 60% 97%;
+      --primitive-green-100: 145 55% 90%;
+      --primitive-green-400: 145 50% 45%;
+      --primitive-green-500: 145 55% 35%;
+
+      --primitive-red-50: 0 70% 97%;
+      --primitive-red-400: 0 65% 55%;
+      --primitive-red-500: 0 70% 45%;
+
+      --primitive-gray-0: 0 0% 100%;
+      --primitive-gray-50: 220 15% 98%;
+      --primitive-gray-100: 220 15% 95%;
+      --primitive-gray-200: 220 12% 90%;
+      --primitive-gray-300: 220 10% 80%;
+      --primitive-gray-400: 220 8% 65%;
+      --primitive-gray-500: 220 6% 50%;
+      --primitive-gray-600: 220 8% 40%;
+      --primitive-gray-700: 220 10% 30%;
+      --primitive-gray-800: 220 12% 20%;
+      --primitive-gray-900: 220 15% 10%;
+      --primitive-gray-950: 220 20% 5%;
+
+      /* Semantic Tokens */
+      --color-background: var(--primitive-mint-100);
+      --color-surface-primary: var(--primitive-gray-0);
+      --color-surface-secondary: var(--primitive-gray-50);
+      --color-surface-tertiary: var(--primitive-gray-100);
+
+      --color-text-primary: var(--primitive-gray-900);
+      --color-text-secondary: var(--primitive-gray-600);
+      --color-text-tertiary: var(--primitive-gray-400);
+      --color-text-on-accent: var(--primitive-gray-0);
+
+      --color-border-default: var(--primitive-gray-200);
+      --color-border-strong: var(--primitive-gray-300);
+      --color-border-focus: var(--primitive-mint-400);
+
+      --color-primary: var(--primitive-gray-900);
+      --color-primary-hover: var(--primitive-gray-800);
+
+      --color-secondary: var(--primitive-lavender-200);
+      --color-accent: var(--primitive-coral-400);
+      --color-accent-hover: var(--primitive-coral-500);
+
+      --color-success: var(--primitive-green-400);
+      --color-success-subtle: var(--primitive-green-50);
+      --color-warning: var(--primitive-yellow-400);
+      --color-warning-subtle: var(--primitive-yellow-100);
+      --color-error: var(--primitive-red-400);
+      --color-error-subtle: var(--primitive-red-50);
+      --color-info: var(--primitive-mint-400);
+      --color-info-subtle: var(--primitive-mint-100);
+
+      --color-reward: var(--primitive-yellow-300);
+      --color-progress: var(--primitive-green-400);
+
+      /* Radius */
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --radius-2xl: 1.25rem;
+      --radius-full: 9999px;
+      --radius-button: var(--radius-lg);
+      --radius-card: var(--radius-2xl);
+
+      /* Shadows */
+      --shadow-sm: 0 1px 3px 0 hsl(var(--primitive-gray-900) / 0.04), 0 1px 2px -1px hsl(var(--primitive-gray-900) / 0.03);
+      --shadow-md: 0 4px 6px -1px hsl(var(--primitive-gray-900) / 0.05), 0 2px 4px -2px hsl(var(--primitive-gray-900) / 0.03);
+      --shadow-lg: 0 10px 15px -3px hsl(var(--primitive-gray-900) / 0.06), 0 4px 6px -4px hsl(var(--primitive-gray-900) / 0.04);
+      --shadow-card: var(--shadow-md);
+      --shadow-button: var(--shadow-sm);
+      --shadow-reward: 0 4px 14px -2px hsl(var(--primitive-yellow-300) / 0.4);
+      --shadow-accent: 0 4px 14px -2px hsl(var(--primitive-coral-400) / 0.3);
+      --shadow-input-focus: 0 0 0 3px hsl(var(--color-border-focus) / 0.2);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       BASE STYLES
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: hsl(var(--color-background));
+      color: hsl(var(--color-text-primary));
+      min-height: 100vh;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       LAYOUT
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    .showcase-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .showcase-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .showcase-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .showcase-header p {
+      color: hsl(var(--color-text-secondary));
+      font-size: 1.125rem;
+    }
+
+    .showcase-section {
+      margin-bottom: 4rem;
+    }
+
+    .showcase-section h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid hsl(var(--color-border-default));
+    }
+
+    .showcase-subsection {
+      margin-bottom: 2rem;
+    }
+
+    .showcase-subsection h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: hsl(var(--color-text-secondary));
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .showcase-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .showcase-card {
+      background: hsl(var(--color-surface-primary));
+      border-radius: var(--radius-card);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       COLOR PALETTE
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    .color-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .color-swatch {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 0.25rem;
+      font-size: 0.625rem;
+      font-weight: 500;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       BUTTONS
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid hsl(var(--color-border-focus));
+      outline-offset: 2px;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Button Sizes */
+    .btn-xs { height: 1.75rem; padding: 0 0.5rem; font-size: 0.6875rem; border-radius: var(--radius-md); }
+    .btn-sm { height: 2rem; padding: 0 0.75rem; font-size: 0.75rem; border-radius: var(--radius-md); }
+    .btn-md { height: 2.5rem; padding: 0 1rem; font-size: 0.875rem; border-radius: var(--radius-button); }
+    .btn-lg { height: 3rem; padding: 0 1.5rem; font-size: 1rem; border-radius: var(--radius-button); }
+    .btn-xl { height: 3.5rem; padding: 0 2rem; font-size: 1rem; border-radius: var(--radius-button); }
+
+    /* Button Variants */
+    .btn-primary {
+      background: hsl(var(--color-primary));
+      color: hsl(var(--color-text-on-accent));
+      box-shadow: var(--shadow-button);
+    }
+    .btn-primary:hover { background: hsl(var(--color-primary-hover)); box-shadow: var(--shadow-md); }
+
+    .btn-secondary {
+      background: transparent;
+      color: hsl(var(--color-text-primary));
+      border: 1px solid hsl(var(--color-border-default));
+    }
+    .btn-secondary:hover { background: hsl(var(--color-surface-secondary)); }
+
+    .btn-ghost {
+      background: transparent;
+      color: hsl(var(--color-text-primary));
+    }
+    .btn-ghost:hover { background: hsl(var(--color-surface-secondary)); }
+
+    .btn-accent {
+      background: hsl(var(--color-accent));
+      color: hsl(var(--color-text-on-accent));
+      box-shadow: var(--shadow-accent);
+    }
+    .btn-accent:hover { background: hsl(var(--color-accent-hover)); }
+
+    .btn-soft {
+      background: hsl(var(--color-surface-secondary));
+      color: hsl(var(--color-text-primary));
+    }
+    .btn-soft:hover { background: hsl(var(--color-surface-tertiary)); }
+
+    .btn-destructive {
+      background: hsl(var(--color-error));
+      color: hsl(var(--color-text-on-accent));
+    }
+    .btn-destructive:hover { opacity: 0.9; }
+
+    .btn-reward {
+      background: hsl(var(--color-reward));
+      color: hsl(var(--color-text-primary));
+      box-shadow: var(--shadow-reward);
+    }
+    .btn-reward:hover { transform: scale(1.05); }
+
+    .btn-pill { border-radius: var(--radius-full); }
+    .btn-full { width: 100%; }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       CARDS
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    .card {
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .card-elevated {
+      background: hsl(var(--color-surface-primary));
+      box-shadow: var(--shadow-card);
+    }
+    .card-elevated:hover { box-shadow: var(--shadow-lg); }
+
+    .card-outlined {
+      background: hsl(var(--color-surface-primary));
+      border: 1px solid hsl(var(--color-border-default));
+    }
+
+    .card-filled {
+      background: hsl(var(--color-surface-secondary));
+    }
+
+    .card-glass {
+      background: hsl(var(--color-surface-primary) / 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid hsl(var(--color-border-default) / 0.5);
+    }
+
+    .card-padding-sm { padding: 0.75rem; }
+    .card-padding-md { padding: 1rem; }
+    .card-padding-lg { padding: 1.5rem; }
+
+    .card-header { padding: 1rem 1rem 0; }
+    .card-content { padding: 1rem; }
+    .card-footer { padding: 0 1rem 1rem; display: flex; gap: 0.75rem; }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: hsl(var(--color-text-primary));
+      margin-bottom: 0.25rem;
+    }
+
+    .card-description {
+      font-size: 0.875rem;
+      color: hsl(var(--color-text-secondary));
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       INPUTS
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    .input {
+      width: 100%;
+      background: hsl(var(--color-surface-primary));
+      border: 1px solid hsl(var(--color-border-default));
+      border-radius: var(--radius-button);
+      color: hsl(var(--color-text-primary));
+      transition: all 0.15s ease;
+      outline: none;
+    }
+
+    .input::placeholder { color: hsl(var(--color-text-tertiary)); }
+
+    .input:focus {
+      border-color: hsl(var(--color-border-focus));
+      box-shadow: var(--shadow-input-focus);
+    }
+
+    .input:disabled {
+      opacity: 0.5;
+      background: hsl(var(--color-surface-secondary));
+      cursor: not-allowed;
+    }
+
+    .input-sm { height: 2rem; padding: 0 0.75rem; font-size: 0.8125rem; }
+    .input-md { height: 2.5rem; padding: 0 0.75rem; font-size: 0.875rem; }
+    .input-lg { height: 3rem; padding: 0 1rem; font-size: 1rem; }
+
+    .input-error { border-color: hsl(var(--color-error)); }
+    .input-error:focus { box-shadow: 0 0 0 3px hsl(var(--color-error) / 0.2); }
+
+    .input-success { border-color: hsl(var(--color-success)); }
+
+    .label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: hsl(var(--color-text-primary));
+      margin-bottom: 0.375rem;
+    }
+
+    .helper-text {
+      font-size: 0.75rem;
+      margin-top: 0.375rem;
+      color: hsl(var(--color-text-secondary));
+    }
+
+    .helper-text-error { color: hsl(var(--color-error)); }
+    .helper-text-success { color: hsl(var(--color-success)); }
+
+    .input-group { margin-bottom: 1rem; }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       BADGES
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: var(--radius-full);
+      font-weight: 500;
+    }
+
+    .badge-sm { height: 1.25rem; padding: 0 0.5rem; font-size: 0.6875rem; }
+    .badge-md { height: 1.5rem; padding: 0 0.625rem; font-size: 0.75rem; }
+    .badge-lg { height: 1.75rem; padding: 0 0.75rem; font-size: 0.8125rem; }
+
+    .badge-default { background: hsl(var(--color-surface-secondary)); color: hsl(var(--color-text-primary)); }
+    .badge-primary { background: hsl(var(--color-primary)); color: hsl(var(--color-text-on-accent)); }
+    .badge-secondary { background: hsl(var(--color-secondary)); color: hsl(var(--color-text-primary)); }
+    .badge-accent { background: hsl(var(--color-accent)); color: hsl(var(--color-text-on-accent)); }
+    .badge-success { background: hsl(var(--color-success-subtle)); color: hsl(var(--color-success)); }
+    .badge-warning { background: hsl(var(--color-warning-subtle)); color: hsl(var(--color-warning)); }
+    .badge-error { background: hsl(var(--color-error-subtle)); color: hsl(var(--color-error)); }
+    .badge-info { background: hsl(var(--color-info-subtle)); color: hsl(var(--color-info)); }
+    .badge-outline { background: transparent; border: 1px solid hsl(var(--color-border-default)); color: hsl(var(--color-text-primary)); }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       AVATARS
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    .avatar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: hsl(var(--color-surface-secondary));
+      color: hsl(var(--color-text-secondary));
+      font-weight: 500;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .avatar-xs { width: 1.5rem; height: 1.5rem; font-size: 0.625rem; }
+    .avatar-sm { width: 2rem; height: 2rem; font-size: 0.75rem; }
+    .avatar-md { width: 2.5rem; height: 2.5rem; font-size: 0.875rem; }
+    .avatar-lg { width: 3rem; height: 3rem; font-size: 1rem; }
+    .avatar-xl { width: 4rem; height: 4rem; font-size: 1.25rem; }
+    .avatar-2xl { width: 5rem; height: 5rem; font-size: 1.5rem; }
+
+    .avatar-ring { ring: 2px solid hsl(var(--color-surface-primary)); ring-offset: 2px; }
+    .avatar-ring-success { box-shadow: 0 0 0 2px hsl(var(--color-success)); }
+    .avatar-ring-accent { box-shadow: 0 0 0 2px hsl(var(--color-accent)); }
+
+    .avatar-group {
+      display: flex;
+    }
+    .avatar-group .avatar {
+      margin-left: -0.75rem;
+      border: 2px solid hsl(var(--color-surface-primary));
+    }
+    .avatar-group .avatar:first-child { margin-left: 0; }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       PROGRESS
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    .progress-track {
+      width: 100%;
+      background: hsl(var(--color-surface-tertiary));
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .progress-track-xs { height: 0.25rem; }
+    .progress-track-sm { height: 0.375rem; }
+    .progress-track-md { height: 0.5rem; }
+    .progress-track-lg { height: 0.75rem; }
+
+    .progress-indicator {
+      height: 100%;
+      border-radius: var(--radius-full);
+      transition: width 0.3s ease;
+    }
+
+    .progress-default { background: hsl(var(--color-progress)); }
+    .progress-primary { background: hsl(var(--color-primary)); }
+    .progress-accent { background: hsl(var(--color-accent)); }
+    .progress-success { background: hsl(var(--color-success)); }
+    .progress-warning { background: hsl(var(--color-warning)); }
+    .progress-reward { background: hsl(var(--color-reward)); }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       GAMIFICATION
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    .coin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: hsl(var(--color-reward));
+      color: hsl(var(--color-text-primary));
+      font-weight: 700;
+      box-shadow: var(--shadow-reward);
+    }
+
+    .coin-xs { width: 1.25rem; height: 1.25rem; font-size: 0.5625rem; }
+    .coin-sm { width: 1.5rem; height: 1.5rem; font-size: 0.625rem; }
+    .coin-md { width: 2rem; height: 2rem; font-size: 0.75rem; }
+    .coin-lg { width: 2.5rem; height: 2.5rem; font-size: 0.875rem; }
+    .coin-xl { width: 3.5rem; height: 3.5rem; font-size: 1.125rem; }
+
+    @keyframes coin-glow {
+      0%, 100% { box-shadow: var(--shadow-reward); }
+      50% { box-shadow: 0 0 20px hsl(var(--primitive-yellow-300) / 0.6); }
+    }
+    .coin-animated { animation: coin-glow 2s ease-in-out infinite; }
+
+    .star {
+      display: inline-flex;
+      transition: color 0.15s ease;
+    }
+    .star-empty { color: hsl(var(--color-text-tertiary)); }
+    .star-filled { color: hsl(var(--color-reward)); }
+
+    .star-sm svg { width: 1rem; height: 1rem; }
+    .star-md svg { width: 1.25rem; height: 1.25rem; }
+    .star-lg svg { width: 1.5rem; height: 1.5rem; }
+
+    .star-rating {
+      display: inline-flex;
+      gap: 0.125rem;
+    }
+
+    .balance-display {
+      display: flex;
+      flex-direction: column;
+    }
+    .balance-label {
+      font-size: 0.875rem;
+      color: hsl(var(--color-text-secondary));
+    }
+    .balance-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: hsl(var(--color-text-primary));
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       TASK CARD
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    .task-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: hsl(var(--color-surface-primary));
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      transition: all 0.2s ease;
+    }
+
+    .task-card-active {
+      box-shadow: var(--shadow-accent), 0 0 0 2px hsl(var(--color-accent) / 0.3);
+    }
+
+    .task-card-completed {
+      background: hsl(var(--color-success-subtle));
+    }
+
+    .task-card-image {
+      width: 4rem;
+      height: 4rem;
+      border-radius: var(--radius-lg);
+      background: hsl(var(--color-surface-secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .task-card-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .task-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .task-card-title {
+      font-weight: 600;
+      color: hsl(var(--color-text-primary));
+    }
+
+    .task-card-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .task-card-reward {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-weight: 600;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       TOGGLES & CHECKBOXES
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    .toggle {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      border-radius: var(--radius-full);
+      background: hsl(var(--color-surface-tertiary));
+      transition: background 0.2s ease;
+    }
+
+    .toggle-checked { background: hsl(var(--color-primary)); }
+
+    .toggle-sm { width: 2.25rem; height: 1.25rem; }
+    .toggle-md { width: 2.75rem; height: 1.5rem; }
+    .toggle-lg { width: 3.5rem; height: 1.75rem; }
+
+    .toggle-thumb {
+      position: absolute;
+      left: 2px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease;
+    }
+
+    .toggle-sm .toggle-thumb { width: 1rem; height: 1rem; }
+    .toggle-md .toggle-thumb { width: 1.25rem; height: 1.25rem; }
+    .toggle-lg .toggle-thumb { width: 1.5rem; height: 1.5rem; }
+
+    .toggle-checked .toggle-thumb { transform: translateX(100%); }
+
+    .checkbox {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid hsl(var(--color-border-default));
+      border-radius: var(--radius-sm);
+      background: hsl(var(--color-surface-primary));
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .checkbox-checked {
+      background: hsl(var(--color-primary));
+      border-color: hsl(var(--color-primary));
+    }
+
+    .checkbox-sm { width: 1rem; height: 1rem; }
+    .checkbox-md { width: 1.25rem; height: 1.25rem; }
+    .checkbox-lg { width: 1.5rem; height: 1.5rem; }
+
+    .radio {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid hsl(var(--color-border-default));
+      border-radius: 50%;
+      background: hsl(var(--color-surface-primary));
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .radio-checked { border-color: hsl(var(--color-primary)); }
+
+    .radio-sm { width: 1rem; height: 1rem; }
+    .radio-md { width: 1.25rem; height: 1.25rem; }
+    .radio-lg { width: 1.5rem; height: 1.5rem; }
+
+    .radio-dot {
+      border-radius: 50%;
+      background: hsl(var(--color-primary));
+    }
+
+    .radio-sm .radio-dot { width: 0.5rem; height: 0.5rem; }
+    .radio-md .radio-dot { width: 0.625rem; height: 0.625rem; }
+    .radio-lg .radio-dot { width: 0.75rem; height: 0.75rem; }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    .bottom-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      height: 4rem;
+      background: hsl(var(--color-surface-primary));
+      border-top: 1px solid hsl(var(--color-border-default));
+      border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+    }
+
+    .bottom-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      flex: 1;
+      height: 100%;
+      color: hsl(var(--color-text-tertiary));
+      font-size: 0.6875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .bottom-nav-item-active { color: hsl(var(--color-text-primary)); }
+
+    .bottom-nav-item svg { width: 1.25rem; height: 1.25rem; }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       TYPOGRAPHY SHOWCASE
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    .type-display-xl { font-size: 4.5rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.04em; }
+    .type-display-lg { font-size: 3.75rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.04em; }
+    .type-display-md { font-size: 3rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+    .type-display-sm { font-size: 2.25rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+
+    .type-h1 { font-size: 2rem; font-weight: 700; line-height: 1.25; }
+    .type-h2 { font-size: 1.75rem; font-weight: 700; line-height: 1.25; }
+    .type-h3 { font-size: 1.5rem; font-weight: 600; line-height: 1.25; }
+    .type-h4 { font-size: 1.25rem; font-weight: 600; line-height: 1.25; }
+    .type-h5 { font-size: 1.125rem; font-weight: 500; line-height: 1.5; }
+    .type-h6 { font-size: 1rem; font-weight: 500; line-height: 1.5; }
+
+    .type-body-lg { font-size: 1.125rem; line-height: 1.625; }
+    .type-body-md { font-size: 1rem; line-height: 1.5; }
+    .type-body-sm { font-size: 0.875rem; line-height: 1.5; }
+
+    .type-ui-lg { font-size: 1rem; font-weight: 500; line-height: 1; }
+    .type-ui-md { font-size: 0.875rem; font-weight: 500; line-height: 1; }
+    .type-ui-sm { font-size: 0.75rem; font-weight: 500; line-height: 1; }
+    .type-ui-xs { font-size: 0.6875rem; font-weight: 500; line-height: 1; }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       SPACING & RADIUS SHOWCASE
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    .spacing-box {
+      background: hsl(var(--color-accent) / 0.2);
+      border: 1px dashed hsl(var(--color-accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: hsl(var(--color-accent));
+    }
+
+    .radius-box {
+      width: 4rem;
+      height: 4rem;
+      background: hsl(var(--color-primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.625rem;
+      font-weight: 500;
+      color: white;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       MOBILE MOCKUP
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    .phone-mockup {
+      width: 375px;
+      height: 700px;
+      background: hsl(var(--color-background));
+      border-radius: 40px;
+      border: 8px solid hsl(var(--color-text-primary));
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 30px;
+      background: hsl(var(--color-text-primary));
+      border-radius: 0 0 20px 20px;
+    }
+
+    .phone-screen {
+      padding: 40px 16px 16px;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    /* SVG Icons (inline) */
+    .icon { display: inline-flex; }
+    .icon svg { width: 1em; height: 1em; }
+  </style>
+</head>
+<body>
+  <div class="showcase-container">
+    <!-- Header -->
+    <header class="showcase-header">
+      <h1>Balansity Design System</h1>
+      <p>Comprehensive UI component showcase based on playful, family-friendly design</p>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         COLORS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <h2>Colors</h2>
+
+      <div class="showcase-subsection">
+        <h3>Primary Palette - Mint</h3>
+        <div class="color-row">
+          <div class="color-swatch" style="background: hsl(180 35% 97%);">50</div>
+          <div class="color-swatch" style="background: hsl(180 35% 93%);">100</div>
+          <div class="color-swatch" style="background: hsl(180 32% 85%);">200</div>
+          <div class="color-swatch" style="background: hsl(180 30% 75%);">300</div>
+          <div class="color-swatch" style="background: hsl(180 28% 65%);">400</div>
+          <div class="color-swatch" style="background: hsl(180 25% 55%);">500</div>
+        </div>
+      </div>
+
+      <div class="showcase-subsection">
+        <h3>Accent Palette - Coral</h3>
+        <div class="color-row">
+          <div class="color-swatch" style="background: hsl(15 85% 97%); color: #333;">50</div>
+          <div class="color-swatch" style="background: hsl(15 85% 93%); color: #333;">100</div>
+          <div class="color-swatch" style="background: hsl(15 80% 85%); color: #333;">200</div>
+          <div class="color-swatch" style="background: hsl(15 75% 75%);">300</div>
+          <div class="color-swatch" style="background: hsl(15 70% 65%);">400</div>
+          <div class="color-swatch" style="background: hsl(15 65% 55%);">500</div>
+        </div>
+      </div>
+
+      <div class="showcase-subsection">
+        <h3>Secondary Palette - Lavender</h3>
+        <div class="color-row">
+          <div class="color-swatch" style="background: hsl(260 40% 97%); color: #333;">50</div>
+          <div class="color-swatch" style="background: hsl(260 40% 93%); color: #333;">100</div>
+          <div class="color-swatch" style="background: hsl(260 35% 85%); color: #333;">200</div>
+          <div class="color-swatch" style="background: hsl(260 30% 75%);">300</div>
+          <div class="color-swatch" style="background: hsl(260 25% 65%);">400</div>
+          <div class="color-swatch" style="background: hsl(260 20% 55%);">500</div>
+        </div>
+      </div>
+
+      <div class="showcase-subsection">
+        <h3>Reward Palette - Yellow</h3>
+        <div class="color-row">
+          <div class="color-swatch" style="background: hsl(45 95% 97%); color: #333;">50</div>
+          <div class="color-swatch" style="background: hsl(45 95% 90%); color: #333;">100</div>
+          <div class="color-swatch" style="background: hsl(45 90% 80%); color: #333;">200</div>
+          <div class="color-swatch" style="background: hsl(45 85% 70%); color: #333;">300</div>
+          <div class="color-swatch" style="background: hsl(45 80% 60%); color: #333;">400</div>
+          <div class="color-swatch" style="background: hsl(45 75% 50%);">500</div>
+        </div>
+      </div>
+
+      <div class="showcase-subsection">
+        <h3>Semantic Colors</h3>
+        <div class="color-row">
+          <div class="color-swatch" style="background: hsl(145 50% 45%); width: 80px;">Success</div>
+          <div class="color-swatch" style="background: hsl(45 80% 60%); width: 80px; color: #333;">Warning</div>
+          <div class="color-swatch" style="background: hsl(0 65% 55%); width: 80px;">Error</div>
+          <div class="color-swatch" style="background: hsl(180 28% 65%); width: 80px;">Info</div>
+        </div>
+      </div>
+
+      <div class="showcase-subsection">
+        <h3>Gray Scale</h3>
+        <div class="color-row">
+          <div class="color-swatch" style="background: hsl(0 0% 100%); color: #333; border: 1px solid #eee;">0</div>
+          <div class="color-swatch" style="background: hsl(220 15% 98%); color: #333;">50</div>
+          <div class="color-swatch" style="background: hsl(220 15% 95%); color: #333;">100</div>
+          <div class="color-swatch" style="background: hsl(220 12% 90%); color: #333;">200</div>
+          <div class="color-swatch" style="background: hsl(220 10% 80%); color: #333;">300</div>
+          <div class="color-swatch" style="background: hsl(220 8% 65%);">400</div>
+          <div class="color-swatch" style="background: hsl(220 6% 50%);">500</div>
+          <div class="color-swatch" style="background: hsl(220 8% 40%);">600</div>
+          <div class="color-swatch" style="background: hsl(220 10% 30%);">700</div>
+          <div class="color-swatch" style="background: hsl(220 12% 20%);">800</div>
+          <div class="color-swatch" style="background: hsl(220 15% 10%);">900</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TYPOGRAPHY
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <h2>Typography</h2>
+
+      <div class="showcase-card">
+        <div class="showcase-subsection">
+          <h3>Display</h3>
+          <div style="margin-bottom: 1rem;">
+            <span class="type-display-xl">Display XL</span>
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <span class="type-display-lg">Display LG</span>
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <span class="type-display-md">Display MD</span>
+          </div>
+          <div>
+            <span class="type-display-sm">Display SM</span>
+          </div>
+        </div>
+
+        <div class="showcase-subsection">
+          <h3>Headings</h3>
+          <div><span class="type-h1">Heading 1 - 32px</span></div>
+          <div><span class="type-h2">Heading 2 - 28px</span></div>
+          <div><span class="type-h3">Heading 3 - 24px</span></div>
+          <div><span class="type-h4">Heading 4 - 20px</span></div>
+          <div><span class="type-h5">Heading 5 - 18px</span></div>
+          <div><span class="type-h6">Heading 6 - 16px</span></div>
+        </div>
+
+        <div class="showcase-subsection">
+          <h3>Body Text</h3>
+          <p class="type-body-lg" style="margin-bottom: 0.5rem;">Body Large - 18px - The quick brown fox jumps over the lazy dog.</p>
+          <p class="type-body-md" style="margin-bottom: 0.5rem;">Body Medium - 16px - The quick brown fox jumps over the lazy dog.</p>
+          <p class="type-body-sm">Body Small - 14px - The quick brown fox jumps over the lazy dog.</p>
+        </div>
+
+        <div class="showcase-subsection">
+          <h3>UI Text</h3>
+          <div class="showcase-row">
+            <span class="type-ui-lg">UI Large</span>
+            <span class="type-ui-md">UI Medium</span>
+            <span class="type-ui-sm">UI Small</span>
+            <span class="type-ui-xs">UI Extra Small</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         BUTTONS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <h2>Buttons</h2>
+
+      <div class="showcase-subsection">
+        <h3>Variants</h3>
+        <div class="showcase-row">
+          <button class="btn btn-md btn-primary">Primary</button>
+          <button class="btn btn-md btn-secondary">Secondary</button>
+          <button class="btn btn-md btn-ghost">Ghost</button>
+          <button class="btn btn-md btn-accent">Accent</button>
+          <button class="btn btn-md btn-soft">Soft</button>
+          <button class="btn btn-md btn-destructive">Destructive</button>
+          <button class="btn btn-md btn-reward">Reward</button>
+        </div>
+      </div>
+
+      <div class="showcase-subsection">
+        <h3>Sizes</h3>
+        <div class="showcase-row">
+          <button class="btn btn-xs btn-primary">Extra Small</button>
+          <button class="btn btn-sm btn-primary">Small</button>
+          <button class="btn btn-md btn-primary">Medium</button>
+          <button class="btn btn-lg btn-primary">Large</button>
+          <button class="btn btn-xl btn-primary">Extra Large</button>
+        </div>
+      </div>
+
+      <div class="showcase-subsection">
+        <h3>Pill Shape</h3>
+        <div class="showcase-row">
+          <button class="btn btn-md btn-primary btn-pill">Primary Pill</button>
+          <button class="btn btn-md btn-secondary btn-pill">Secondary Pill</button>
+          <button class="btn btn-md btn-accent btn-pill">Accent Pill</button>
+          <button class="btn btn-md btn-reward btn-pill">Reward Pill</button>
+        </div>
+      </div>
+
+      <div class="showcase-subsection">
+        <h3>States</h3>
+        <div class="showcase-row">
+          <button class="btn btn-md btn-primary">Default</button>
+          <button class="btn btn-md btn-primary" style="opacity: 0.8;">Hover</button>
+          <button class="btn btn-md btn-primary" disabled>Disabled</button>
+        </div>
+      </div>
+
+      <div class="showcase-subsection">
+        <h3>Full Width</h3>
+        <div style="max-width: 320px;">
+          <button class="btn btn-lg btn-primary btn-full">Full Width Button</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         CARDS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <h2>Cards</h2>
+
+      <div class="showcase-grid">
+        <div class="card card-elevated card-padding-lg">
+          <div class="card-title">Elevated Card</div>
+          <div class="card-description">Default card with shadow elevation</div>
+          <div style="margin-top: 1rem;">
+            <button class="btn btn-sm btn-primary">Action</button>
+          </div>
+        </div>
+
+        <div class="card card-outlined card-padding-lg">
+          <div class="card-title">Outlined Card</div>
+          <div class="card-description">Card with border, no shadow</div>
+          <div style="margin-top: 1rem;">
+            <button class="btn btn-sm btn-secondary">Action</button>
+          </div>
+        </div>
+
+        <div class="card card-filled card-padding-lg">
+          <div class="card-title">Filled Card</div>
+          <div class="card-description">Card with subtle background fill</div>
+          <div style="margin-top: 1rem;">
+            <button class="btn btn-sm btn-soft">Action</button>
+          </div>
+        </div>
+
+        <div class="card card-glass card-padding-lg" style="background-image: linear-gradient(135deg, hsl(180 35% 90% / 0.5), hsl(260 35% 90% / 0.5));">
+          <div class="card-title">Glass Card</div>
+          <div class="card-description">Frosted glass effect with blur</div>
+          <div style="margin-top: 1rem;">
+            <button class="btn btn-sm btn-ghost">Action</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         INPUTS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <h2>Inputs</h2>
+
+      <div class="showcase-grid">
+        <div class="showcase-card">
+          <div class="showcase-subsection">
+            <h3>Sizes</h3>
+            <div class="input-group">
+              <label class="label">Small Input</label>
+              <input class="input input-sm" type="text" placeholder="Small size...">
+            </div>
+            <div class="input-group">
+              <label class="label">Medium Input</label>
+              <input class="input input-md" type="text" placeholder="Medium size (default)...">
+            </div>
+            <div class="input-group">
+              <label class="label">Large Input</label>
+              <input class="input input-lg" type="text" placeholder="Large size...">
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-card">
+          <div class="showcase-subsection">
+            <h3>States</h3>
+            <div class="input-group">
+              <label class="label">Default</label>
+              <input class="input input-md" type="text" placeholder="Default state...">
+              <div class="helper-text">This is helper text</div>
+            </div>
+            <div class="input-group">
+              <label class="label">Error State</label>
+              <input class="input input-md input-error" type="text" value="Invalid input">
+              <div class="helper-text helper-text-error">Please enter a valid value</div>
+            </div>
+            <div class="input-group">
+              <label class="label">Success State</label>
+              <input class="input input-md input-success" type="text" value="Valid input">
+              <div class="helper-text helper-text-success">Looks good!</div>
+            </div>
+            <div class="input-group">
+              <label class="label">Disabled</label>
+              <input class="input input-md" type="text" placeholder="Disabled..." disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         BADGES
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <h2>Badges</h2>
+
+      <div class="showcase-subsection">
+        <h3>Variants</h3>
+        <div class="showcase-row">
+          <span class="badge badge-md badge-default">Default</span>
+          <span class="badge badge-md badge-primary">Primary</span>
+          <span class="badge badge-md badge-secondary">Secondary</span>
+          <span class="badge badge-md badge-accent">Accent</span>
+          <span class="badge badge-md badge-success">Success</span>
+          <span class="badge badge-md badge-warning">Warning</span>
+          <span class="badge badge-md badge-error">Error</span>
+          <span class="badge badge-md badge-info">Info</span>
+          <span class="badge badge-md badge-outline">Outline</span>
+        </div>
+      </div>
+
+      <div class="showcase-subsection">
+        <h3>Sizes</h3>
+        <div class="showcase-row">
+          <span class="badge badge-sm badge-primary">Small</span>
+          <span class="badge badge-md badge-primary">Medium</span>
+          <span class="badge badge-lg badge-primary">Large</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         AVATARS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <h2>Avatars</h2>
+
+      <div class="showcase-subsection">
+        <h3>Sizes</h3>
+        <div class="showcase-row">
+          <div class="avatar avatar-xs">XS</div>
+          <div class="avatar avatar-sm">SM</div>
+          <div class="avatar avatar-md">MD</div>
+          <div class="avatar avatar-lg">LG</div>
+          <div class="avatar avatar-xl">XL</div>
+          <div class="avatar avatar-2xl">2XL</div>
+        </div>
+      </div>
+
+      <div class="showcase-subsection">
+        <h3>With Ring</h3>
+        <div class="showcase-row">
+          <div class="avatar avatar-lg" style="background: hsl(15 70% 65%);">JD</div>
+          <div class="avatar avatar-lg avatar-ring-success" style="background: hsl(260 35% 85%);">AK</div>
+          <div class="avatar avatar-lg avatar-ring-accent" style="background: hsl(180 32% 85%);">MR</div>
+        </div>
+      </div>
+
+      <div class="showcase-subsection">
+        <h3>Avatar Group</h3>
+        <div class="avatar-group">
+          <div class="avatar avatar-md" style="background: hsl(15 70% 65%);">JD</div>
+          <div class="avatar avatar-md" style="background: hsl(260 35% 85%);">AK</div>
+          <div class="avatar avatar-md" style="background: hsl(180 32% 85%);">MR</div>
+          <div class="avatar avatar-md" style="background: hsl(45 85% 70%);">+3</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         PROGRESS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <h2>Progress</h2>
+
+      <div class="showcase-card" style="max-width: 500px;">
+        <div class="showcase-subsection">
+          <h3>Linear Progress</h3>
+          <div style="margin-bottom: 1rem;">
+            <div class="type-ui-sm" style="margin-bottom: 0.5rem; color: hsl(var(--color-text-secondary));">Default - 75%</div>
+            <div class="progress-track progress-track-md">
+              <div class="progress-indicator progress-default" style="width: 75%;"></div>
+            </div>
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <div class="type-ui-sm" style="margin-bottom: 0.5rem; color: hsl(var(--color-text-secondary));">Accent - 60%</div>
+            <div class="progress-track progress-track-md">
+              <div class="progress-indicator progress-accent" style="width: 60%;"></div>
+            </div>
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <div class="type-ui-sm" style="margin-bottom: 0.5rem; color: hsl(var(--color-text-secondary));">Success - 100%</div>
+            <div class="progress-track progress-track-md">
+              <div class="progress-indicator progress-success" style="width: 100%;"></div>
+            </div>
+          </div>
+          <div>
+            <div class="type-ui-sm" style="margin-bottom: 0.5rem; color: hsl(var(--color-text-secondary));">Reward - 45%</div>
+            <div class="progress-track progress-track-lg">
+              <div class="progress-indicator progress-reward" style="width: 45%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-subsection">
+          <h3>Progress Sizes</h3>
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div>
+              <div class="type-ui-xs" style="margin-bottom: 0.25rem;">XS</div>
+              <div class="progress-track progress-track-xs">
+                <div class="progress-indicator progress-primary" style="width: 60%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="type-ui-xs" style="margin-bottom: 0.25rem;">SM</div>
+              <div class="progress-track progress-track-sm">
+                <div class="progress-indicator progress-primary" style="width: 60%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="type-ui-xs" style="margin-bottom: 0.25rem;">MD</div>
+              <div class="progress-track progress-track-md">
+                <div class="progress-indicator progress-primary" style="width: 60%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="type-ui-xs" style="margin-bottom: 0.25rem;">LG</div>
+              <div class="progress-track progress-track-lg">
+                <div class="progress-indicator progress-primary" style="width: 60%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         GAMIFICATION
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <h2>Gamification Elements</h2>
+
+      <div class="showcase-grid">
+        <div class="showcase-card">
+          <div class="showcase-subsection">
+            <h3>Coins</h3>
+            <div class="showcase-row">
+              <div class="coin coin-xs">$</div>
+              <div class="coin coin-sm">$</div>
+              <div class="coin coin-md">$</div>
+              <div class="coin coin-lg">$</div>
+              <div class="coin coin-xl">$</div>
+            </div>
+            <div style="margin-top: 1rem;">
+              <div class="coin coin-lg coin-animated">4</div>
+              <span style="margin-left: 0.5rem; color: hsl(var(--color-text-secondary));">Animated</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-card">
+          <div class="showcase-subsection">
+            <h3>Star Rating</h3>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <div class="star-rating">
+                <span class="star star-filled star-md"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+                <span class="star star-filled star-md"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+                <span class="star star-filled star-md"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+                <span class="star star-filled star-md"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+                <span class="star star-filled star-md"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+              </div>
+              <div class="star-rating">
+                <span class="star star-filled star-md"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+                <span class="star star-filled star-md"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+                <span class="star star-filled star-md"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+                <span class="star star-filled star-md"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+                <span class="star star-empty star-md"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+              </div>
+              <div class="star-rating">
+                <span class="star star-filled star-md"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+                <span class="star star-filled star-md"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+                <span class="star star-filled star-md"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+                <span class="star star-empty star-md"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+                <span class="star star-empty star-md"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-card">
+          <div class="showcase-subsection">
+            <h3>Balance Display</h3>
+            <div class="balance-display">
+              <span class="balance-label">Total balance</span>
+              <span class="balance-value">$2,850</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TASK CARDS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <h2>Task Cards</h2>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px;">
+        <div class="task-card">
+          <div class="task-card-image">🛏️</div>
+          <div class="task-card-content">
+            <div class="task-card-header">
+              <span class="badge badge-sm badge-default">Pending</span>
+              <span class="type-ui-xs" style="color: hsl(var(--color-text-tertiary)); text-transform: uppercase;">Daily</span>
+            </div>
+            <div class="task-card-title">Make the bed</div>
+            <div class="star-rating" style="margin-top: 0.25rem;">
+              <span class="star star-empty star-sm"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+              <span class="star star-empty star-sm"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+              <span class="star star-empty star-sm"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+              <span class="star star-empty star-sm"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+              <span class="star star-empty star-sm"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+            </div>
+          </div>
+          <div class="task-card-actions">
+            <div class="task-card-reward">
+              <div class="coin coin-sm">$</div>
+              <span>5</span>
+            </div>
+            <svg style="width: 1.25rem; height: 1.25rem; color: hsl(var(--color-text-tertiary));" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <div class="task-card task-card-active">
+          <div class="task-card-image">👕</div>
+          <div class="task-card-content">
+            <div class="task-card-header">
+              <span class="badge badge-sm badge-accent">Active</span>
+              <span class="type-ui-xs" style="color: hsl(var(--color-text-tertiary)); text-transform: uppercase;">Daily</span>
+            </div>
+            <div class="task-card-title">Fold the laundry</div>
+            <div class="star-rating" style="margin-top: 0.25rem;">
+              <span class="star star-empty star-sm"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+              <span class="star star-empty star-sm"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+              <span class="star star-empty star-sm"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+              <span class="star star-empty star-sm"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+              <span class="star star-empty star-sm"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+            </div>
+          </div>
+          <div class="task-card-actions">
+            <div class="task-card-reward">
+              <div class="coin coin-sm">$</div>
+              <span>4</span>
+            </div>
+            <button class="btn btn-sm btn-primary">Complete</button>
+          </div>
+        </div>
+
+        <div class="task-card task-card-completed">
+          <div class="task-card-image">📚</div>
+          <div class="task-card-content">
+            <div class="task-card-header">
+              <span class="badge badge-sm badge-success">Done</span>
+              <span class="type-ui-xs" style="color: hsl(var(--color-text-tertiary)); text-transform: uppercase;">Daily</span>
+            </div>
+            <div class="task-card-title">Do homework</div>
+            <div class="star-rating" style="margin-top: 0.25rem;">
+              <span class="star star-filled star-sm"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+              <span class="star star-filled star-sm"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+              <span class="star star-filled star-sm"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+              <span class="star star-filled star-sm"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+              <span class="star star-empty star-sm"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></span>
+            </div>
+          </div>
+          <div class="task-card-actions">
+            <div class="task-card-reward">
+              <div class="coin coin-sm">$</div>
+              <span>8</span>
+            </div>
+            <div style="width: 2rem; height: 2rem; border-radius: 50%; background: hsl(var(--color-success)); display: flex; align-items: center; justify-content: center;">
+              <svg style="width: 1rem; height: 1rem; color: white;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TOGGLES & CONTROLS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <h2>Form Controls</h2>
+
+      <div class="showcase-grid">
+        <div class="showcase-card">
+          <div class="showcase-subsection">
+            <h3>Toggles</h3>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div class="toggle toggle-sm"><div class="toggle-thumb"></div></div>
+                <span class="type-body-sm">Small Off</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div class="toggle toggle-sm toggle-checked"><div class="toggle-thumb"></div></div>
+                <span class="type-body-sm">Small On</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div class="toggle toggle-md"><div class="toggle-thumb"></div></div>
+                <span class="type-body-sm">Medium Off</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div class="toggle toggle-md toggle-checked"><div class="toggle-thumb"></div></div>
+                <span class="type-body-sm">Medium On</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div class="toggle toggle-lg"><div class="toggle-thumb"></div></div>
+                <span class="type-body-sm">Large Off</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div class="toggle toggle-lg toggle-checked"><div class="toggle-thumb"></div></div>
+                <span class="type-body-sm">Large On</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-card">
+          <div class="showcase-subsection">
+            <h3>Checkboxes</h3>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div class="checkbox checkbox-md"></div>
+                <span class="type-body-sm">Unchecked</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div class="checkbox checkbox-md checkbox-checked">
+                  <svg style="width: 0.75rem; height: 0.75rem; color: white;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <span class="type-body-sm">Checked</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="showcase-subsection">
+            <h3>Radio Buttons</h3>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div class="radio radio-md"></div>
+                <span class="type-body-sm">Unselected</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div class="radio radio-md radio-checked">
+                  <div class="radio-dot"></div>
+                </div>
+                <span class="type-body-sm">Selected</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         NAVIGATION
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <h2>Navigation</h2>
+
+      <div class="showcase-subsection">
+        <h3>Bottom Navigation</h3>
+        <div style="max-width: 400px;">
+          <div class="bottom-nav">
+            <div class="bottom-nav-item bottom-nav-item-active">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+              <span>Home</span>
+            </div>
+            <div class="bottom-nav-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Tasks</span>
+            </div>
+            <div class="bottom-nav-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+              <span>Saved</span>
+            </div>
+            <div class="bottom-nav-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <span>Settings</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SPACING & RADIUS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="showcase-section">
+      <h2>Spacing & Radius</h2>
+
+      <div class="showcase-grid">
+        <div class="showcase-card">
+          <div class="showcase-subsection">
+            <h3>Spacing Scale</h3>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <div class="spacing-box" style="width: 4px; height: 24px;">1</div>
+              <div class="spacing-box" style="width: 8px; height: 24px;">2</div>
+              <div class="spacing-box" style="width: 12px; height: 24px;">3</div>
+              <div class="spacing-box" style="width: 16px; height: 24px;">4</div>
+              <div class="spacing-box" style="width: 24px; height: 24px;">6</div>
+              <div class="spacing-box" style="width: 32px; height: 24px;">8</div>
+              <div class="spacing-box" style="width: 48px; height: 24px;">12</div>
+              <div class="spacing-box" style="width: 64px; height: 24px;">16</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="showcase-card">
+          <div class="showcase-subsection">
+            <h3>Border Radius</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+              <div class="radius-box" style="border-radius: 0;">none</div>
+              <div class="radius-box" style="border-radius: 2px;">xs</div>
+              <div class="radius-box" style="border-radius: 4px;">sm</div>
+              <div class="radius-box" style="border-radius: 8px;">md</div>
+              <div class="radius-box" style="border-radius: 12px;">lg</div>
+              <div class="radius-box" style="border-radius: 16px;">xl</div>
+              <div class="radius-box" style="border-radius: 20px;">2xl</div>
+              <div class="radius-box" style="border-radius: 9999px;">full</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 3rem 0; color: hsl(var(--color-text-secondary));">
+      <p>Balansity Design System v1.0.0</p>
+      <p style="font-size: 0.875rem; margin-top: 0.5rem;">Built with CSS Variables + Semantic Tokens</p>
+    </footer>
+  </div>
+</body>
+</html>
