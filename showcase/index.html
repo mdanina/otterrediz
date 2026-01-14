@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glimmer Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════════
+       GLIMMER DESIGN SYSTEM - SHOWCASE
+       ═══════════════════════════════════════════════════════════════════════ */
+
+    :root {
+      /* Core Palette */
+      --color-ink: #190000;
+      --color-lavender: #B3BCF7;
+      --color-lavender-light: #D4DAFC;
+      --color-lavender-pale: #E8EBFD;
+      --color-lilac: #DFCEE4;
+      --color-lilac-light: #EDE4F0;
+      --color-lilac-pale: #F5F0F7;
+      --color-honey: #FFD176;
+      --color-honey-light: #FFE4A8;
+      --color-honey-pale: #FFF3D6;
+      --color-honey-dark: #E5B85A;
+      --color-sage: #D2E4CF;
+      --color-sage-light: #E4EFE2;
+      --color-sage-pale: #F2F8F1;
+      --color-white: #FFFFFF;
+      --color-cream: #FDFCFA;
+      --color-cloud: #F8F7F5;
+
+      /* Gradients */
+      --gradient-honey: linear-gradient(180deg, #FFE4A8 0%, #FFD176 100%);
+      --gradient-sage: linear-gradient(180deg, #E4EFE2 0%, #D2E4CF 100%);
+      --gradient-lavender: linear-gradient(180deg, #D4DAFC 0%, #B3BCF7 100%);
+      --gradient-sunrise: linear-gradient(180deg, #FFF3D6 0%, #FFD176 50%, #E5B85A 100%);
+      --gradient-mesh:
+        radial-gradient(ellipse at 20% 20%, rgba(179, 188, 247, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(210, 228, 207, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(255, 209, 118, 0.2) 0%, transparent 70%),
+        linear-gradient(180deg, #FDFCFA 0%, #F8F7F5 100%);
+
+      /* Glass */
+      --glass-white: rgba(255, 255, 255, 0.7);
+      --glass-white-strong: rgba(255, 255, 255, 0.85);
+      --blur-md: 12px;
+      --blur-lg: 20px;
+
+      /* Shadows */
+      --shadow-glass: 0 4px 24px rgba(25, 0, 0, 0.06);
+      --shadow-soft: 0 2px 12px rgba(25, 0, 0, 0.04);
+      --shadow-float: 0 12px 40px rgba(25, 0, 0, 0.12);
+
+      /* Radius */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-2xl: 24px;
+      --radius-full: 9999px;
+
+      /* Spacing */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+
+      /* Text */
+      --text-primary: var(--color-ink);
+      --text-secondary: rgba(25, 0, 0, 0.6);
+      --text-tertiary: rgba(25, 0, 0, 0.4);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      font-family: 'Nunito', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background: var(--gradient-mesh);
+      color: var(--text-primary);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .showcase-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .showcase-header h1 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      background: var(--gradient-honey);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .showcase-header p {
+      font-size: 18px;
+      color: var(--text-secondary);
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid rgba(25, 0, 0, 0.1);
+    }
+
+    .subsection {
+      margin-bottom: 32px;
+    }
+
+    .subsection-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       COLORS
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .color-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .color-swatch {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .color-swatch.dark-text { color: var(--color-ink); }
+    .color-swatch.light-text { color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       TYPOGRAPHY
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .type-display { font-size: 48px; font-weight: 800; line-height: 1.1; }
+    .type-h1 { font-size: 36px; font-weight: 700; line-height: 1.2; }
+    .type-h2 { font-size: 28px; font-weight: 700; line-height: 1.25; }
+    .type-h3 { font-size: 22px; font-weight: 600; line-height: 1.3; }
+    .type-body { font-size: 16px; font-weight: 400; line-height: 1.5; }
+    .type-body-sm { font-size: 14px; font-weight: 400; line-height: 1.5; }
+    .type-caption { font-size: 12px; font-weight: 500; line-height: 1.4; color: var(--text-secondary); }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       BUTTONS
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn:active { transform: scale(0.97); }
+
+    .btn-primary {
+      background: var(--color-ink);
+      color: white;
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      font-size: 16px;
+    }
+
+    .btn-primary:hover { background: #2a1010; }
+
+    .btn-secondary {
+      background: var(--color-white);
+      color: var(--text-primary);
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      font-size: 16px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-secondary:hover { box-shadow: var(--shadow-glass); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-primary);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+    }
+
+    .btn-ghost:hover { background: rgba(25, 0, 0, 0.05); }
+
+    .btn-sm { padding: 8px 16px; font-size: 14px; }
+    .btn-lg { padding: 16px 32px; font-size: 18px; }
+
+    .btn-icon {
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border-radius: var(--radius-full);
+      background: var(--color-white);
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       GLASS CARDS
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .glass-card {
+      background: var(--glass-white);
+      backdrop-filter: blur(var(--blur-md));
+      -webkit-backdrop-filter: blur(var(--blur-md));
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: var(--shadow-glass);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .card-honey {
+      background: var(--gradient-honey);
+      border-radius: var(--radius-xl);
+      padding: 20px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card-sage {
+      background: var(--gradient-sage);
+      border-radius: var(--radius-xl);
+      padding: 20px;
+    }
+
+    .card-lavender {
+      background: var(--gradient-lavender);
+      border-radius: var(--radius-xl);
+      padding: 20px;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       MOOD OPTIONS
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .mood-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: var(--color-sage-pale);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: 2px solid transparent;
+      min-width: 200px;
+    }
+
+    .mood-option:hover { background: var(--color-sage-light); }
+
+    .mood-option.selected {
+      background: var(--color-sage);
+      border-color: var(--color-ink);
+    }
+
+    .mood-label {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .mood-check {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-full);
+      border: 2px solid rgba(25, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+    }
+
+    .mood-option.selected .mood-check {
+      background: var(--color-ink);
+      border-color: var(--color-ink);
+    }
+
+    .mood-option.selected .mood-check::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       EMOTION CHIPS
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .emotion-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .emotion-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 12px 8px;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .emotion-chip:hover { background: rgba(25, 0, 0, 0.05); }
+    .emotion-chip.selected { background: var(--color-honey-pale); }
+
+    .emotion-face {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--color-honey-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .emotion-face .eyes {
+      display: flex;
+      gap: 8px;
+      position: absolute;
+      top: 35%;
+    }
+
+    .emotion-face .eye {
+      width: 5px;
+      height: 6px;
+      background: var(--color-ink);
+      border-radius: 50%;
+    }
+
+    .emotion-face .mouth {
+      position: absolute;
+      bottom: 28%;
+      width: 12px;
+      height: 2px;
+      background: var(--color-ink);
+      border-radius: var(--radius-full);
+    }
+
+    .emotion-face.happy .mouth {
+      width: 14px;
+      height: 7px;
+      background: transparent;
+      border-bottom: 2px solid var(--color-ink);
+      border-radius: 0 0 50px 50px;
+    }
+
+    .emotion-face.sad .mouth {
+      width: 12px;
+      height: 6px;
+      background: transparent;
+      border-top: 2px solid var(--color-ink);
+      border-radius: 50px 50px 0 0;
+      bottom: 25%;
+    }
+
+    .emotion-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       SECTION HEADERS (Expandable)
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .section-header-component {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: var(--color-honey);
+      border-radius: var(--radius-xl);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .section-header-component:hover { background: var(--color-honey-dark); }
+
+    .section-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-number {
+      width: 24px;
+      height: 24px;
+      background: var(--color-ink);
+      color: white;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .section-header-title {
+      font-weight: 600;
+    }
+
+    .section-header-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .action-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-full);
+      background: rgba(25, 0, 0, 0.1);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       STREAK BADGE
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .streak-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 24px;
+      background: var(--glass-white);
+      backdrop-filter: blur(var(--blur-md));
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .streak-content h3 {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .streak-content p {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .week-calendar {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .week-day {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .day-label {
+      font-size: 10px;
+      color: var(--text-tertiary);
+      font-weight: 600;
+    }
+
+    .day-mood {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--color-honey-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .day-mood .mini-eyes {
+      display: flex;
+      gap: 5px;
+      position: absolute;
+      top: 30%;
+    }
+
+    .day-mood .mini-eye {
+      width: 3px;
+      height: 4px;
+      background: var(--color-ink);
+      border-radius: 50%;
+    }
+
+    .day-mood .mini-mouth {
+      position: absolute;
+      bottom: 25%;
+      width: 8px;
+      height: 2px;
+      background: var(--color-ink);
+      border-radius: var(--radius-full);
+    }
+
+    .week-day.today .day-mood {
+      background: var(--color-honey);
+      box-shadow: 0 0 0 2px var(--color-ink);
+    }
+
+    .week-day.future .day-mood {
+      background: var(--color-cloud);
+    }
+
+    .week-day.future .mini-eye,
+    .week-day.future .mini-mouth {
+      background: var(--text-tertiary);
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       MEDIA CARD
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .media-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--gradient-honey);
+      aspect-ratio: 1;
+      max-width: 200px;
+    }
+
+    .media-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px;
+    }
+
+    .media-badge {
+      align-self: flex-start;
+      padding: 4px 10px;
+      background: var(--glass-white-strong);
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .media-blob {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .media-play {
+      align-self: flex-end;
+      width: 40px;
+      height: 40px;
+      background: var(--color-white);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+    }
+
+    .media-info {
+      margin-top: 12px;
+    }
+
+    .media-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .media-meta {
+      display: flex;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       CHAT MESSAGES
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .chat-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 350px;
+    }
+
+    .chat-message {
+      max-width: 85%;
+      padding: 16px;
+      border-radius: var(--radius-xl);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .chat-message.user {
+      background: var(--color-lavender-pale);
+      margin-left: auto;
+      border-bottom-right-radius: var(--radius-sm);
+    }
+
+    .chat-message.assistant {
+      background: var(--color-white);
+      margin-right: auto;
+      border-bottom-left-radius: var(--radius-sm);
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       BOTTOM NAV
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .bottom-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      height: 64px;
+      background: var(--color-white);
+      border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+      box-shadow: 0 -4px 20px rgba(25, 0, 0, 0.05);
+      max-width: 400px;
+    }
+
+    .bottom-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 8px 16px;
+      color: var(--text-tertiary);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+
+    .bottom-nav-item.active { color: var(--text-primary); }
+
+    .nav-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       INPUTS
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .input {
+      width: 100%;
+      max-width: 300px;
+      padding: 12px 20px;
+      background: var(--color-white);
+      border: 1px solid rgba(25, 0, 0, 0.1);
+      border-radius: var(--radius-full);
+      font-family: 'Nunito', sans-serif;
+      font-size: 16px;
+      color: var(--text-primary);
+      outline: none;
+      transition: all 0.15s;
+    }
+
+    .input::placeholder { color: var(--text-tertiary); }
+
+    .input:focus {
+      border-color: var(--color-lavender);
+      box-shadow: 0 0 0 3px rgba(179, 188, 247, 0.3);
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       BLOB MASCOT
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .blob {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .blob-body {
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      background: var(--gradient-sunrise);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .blob-sm .blob-body { width: 48px; height: 48px; }
+    .blob-md .blob-body { width: 80px; height: 80px; }
+    .blob-lg .blob-body { width: 120px; height: 120px; }
+    .blob-xl .blob-body { width: 180px; height: 180px; }
+
+    .blob-face {
+      display: flex;
+      gap: 12px;
+      position: absolute;
+      top: 30%;
+    }
+
+    .blob-sm .blob-face { gap: 6px; top: 28%; }
+    .blob-md .blob-face { gap: 10px; top: 30%; }
+    .blob-lg .blob-face { gap: 14px; top: 32%; }
+    .blob-xl .blob-face { gap: 20px; top: 33%; }
+
+    .blob-eye {
+      background: var(--color-ink);
+      border-radius: 50%;
+    }
+
+    .blob-sm .blob-eye { width: 5px; height: 6px; }
+    .blob-md .blob-eye { width: 8px; height: 10px; }
+    .blob-lg .blob-eye { width: 12px; height: 15px; }
+    .blob-xl .blob-eye { width: 16px; height: 20px; }
+
+    .blob-mouth {
+      position: absolute;
+      background: var(--color-ink);
+      border-radius: var(--radius-full);
+    }
+
+    .blob-sm .blob-mouth { bottom: 30%; width: 12px; height: 2px; }
+    .blob-md .blob-mouth { bottom: 32%; width: 20px; height: 3px; }
+    .blob-lg .blob-mouth { bottom: 30%; width: 30px; height: 4px; }
+    .blob-xl .blob-mouth { bottom: 28%; width: 45px; height: 5px; }
+
+    /* Blob emotions */
+    .blob.happy .blob-mouth {
+      background: transparent;
+      border-bottom: 3px solid var(--color-ink);
+      border-radius: 0 0 50px 50px;
+    }
+
+    .blob-sm.happy .blob-mouth { border-width: 2px; height: 6px; }
+    .blob-md.happy .blob-mouth { border-width: 3px; height: 10px; }
+    .blob-lg.happy .blob-mouth { border-width: 3px; height: 14px; }
+    .blob-xl.happy .blob-mouth { border-width: 4px; height: 20px; }
+
+    .blob.sad .blob-mouth {
+      background: transparent;
+      border-top: 3px solid var(--color-ink);
+      border-radius: 50px 50px 0 0;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       PHONE MOCKUP
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .phone-mockup {
+      width: 320px;
+      min-height: 600px;
+      background: linear-gradient(180deg, #F8F7F5 0%, #FFF3D6 100%);
+      border-radius: 40px;
+      border: 6px solid var(--color-ink);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 28px;
+      background: var(--color-ink);
+      border-radius: 0 0 16px 16px;
+    }
+
+    .phone-screen {
+      padding: 44px 20px 20px;
+      min-height: 100%;
+    }
+
+    /* ─────────────────────────────────────────────────────────────────────────
+       SPACING & RADIUS SHOWCASE
+       ───────────────────────────────────────────────────────────────────────── */
+
+    .spacing-box {
+      background: rgba(255, 209, 118, 0.3);
+      border: 1px dashed var(--color-honey-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-honey-dark);
+    }
+
+    .radius-box {
+      width: 64px;
+      height: 64px;
+      background: var(--color-ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 600;
+      color: white;
+    }
+
+    /* Footer */
+    .showcase-footer {
+      text-align: center;
+      padding: 40px 0;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="showcase-header">
+      <h1>Glimmer</h1>
+      <p>Meditation & Wellness Design System</p>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         COLORS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <h2 class="section-title">Colors</h2>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Core Palette</h3>
+        <div class="color-row">
+          <div class="color-swatch light-text" style="background: #190000;">#190000<br>Ink</div>
+          <div class="color-swatch dark-text" style="background: #B3BCF7;">#B3BCF7<br>Lavender</div>
+          <div class="color-swatch dark-text" style="background: #DFCEE4;">#DFCEE4<br>Lilac</div>
+          <div class="color-swatch dark-text" style="background: #FFD176;">#FFD176<br>Honey</div>
+          <div class="color-swatch dark-text" style="background: #D2E4CF;">#D2E4CF<br>Sage</div>
+          <div class="color-swatch dark-text" style="background: #FFFFFF; border: 1px solid rgba(0,0,0,0.1);">#FFFFFF<br>White</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Extended - Honey</h3>
+        <div class="color-row">
+          <div class="color-swatch dark-text" style="background: #FFF3D6;">Pale</div>
+          <div class="color-swatch dark-text" style="background: #FFE4A8;">Light</div>
+          <div class="color-swatch dark-text" style="background: #FFD176;">Base</div>
+          <div class="color-swatch dark-text" style="background: #E5B85A;">Dark</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Extended - Sage</h3>
+        <div class="color-row">
+          <div class="color-swatch dark-text" style="background: #F2F8F1;">Pale</div>
+          <div class="color-swatch dark-text" style="background: #E4EFE2;">Light</div>
+          <div class="color-swatch dark-text" style="background: #D2E4CF;">Base</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Extended - Lavender</h3>
+        <div class="color-row">
+          <div class="color-swatch dark-text" style="background: #E8EBFD;">Pale</div>
+          <div class="color-swatch dark-text" style="background: #D4DAFC;">Light</div>
+          <div class="color-swatch dark-text" style="background: #B3BCF7;">Base</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Gradients</h3>
+        <div class="color-row">
+          <div class="color-swatch dark-text" style="background: linear-gradient(180deg, #FFE4A8 0%, #FFD176 100%); width: 100px;">Honey</div>
+          <div class="color-swatch dark-text" style="background: linear-gradient(180deg, #E4EFE2 0%, #D2E4CF 100%); width: 100px;">Sage</div>
+          <div class="color-swatch dark-text" style="background: linear-gradient(180deg, #D4DAFC 0%, #B3BCF7 100%); width: 100px;">Lavender</div>
+          <div class="color-swatch dark-text" style="background: linear-gradient(180deg, #FFF3D6 0%, #FFD176 50%, #E5B85A 100%); width: 100px;">Sunrise</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TYPOGRAPHY
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <h2 class="section-title">Typography - Nunito</h2>
+
+      <div class="card">
+        <div style="margin-bottom: 24px;">
+          <span class="type-display">How are you today?</span>
+        </div>
+        <div style="margin-bottom: 16px;">
+          <span class="type-h1">Welcome to Glimmer</span>
+        </div>
+        <div style="margin-bottom: 16px;">
+          <span class="type-h2">Good Afternoon, Clara</span>
+        </div>
+        <div style="margin-bottom: 16px;">
+          <span class="type-h3">Popular on Glimmer</span>
+        </div>
+        <div style="margin-bottom: 16px;">
+          <span class="type-body">Support for all of life's moments. Connect with friends and over 60 million people benefiting from mindfulness.</span>
+        </div>
+        <div style="margin-bottom: 16px;">
+          <span class="type-body-sm">3 min • Meditation • Tamara Levitt</span>
+        </div>
+        <div>
+          <span class="type-caption">15 Days until your next milestone!</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         BLOB MASCOTS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <h2 class="section-title">Blob Mascots</h2>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Sizes</h3>
+        <div class="row">
+          <div class="blob blob-sm">
+            <div class="blob-body">
+              <div class="blob-face">
+                <div class="blob-eye"></div>
+                <div class="blob-eye"></div>
+              </div>
+              <div class="blob-mouth"></div>
+            </div>
+            <span class="type-caption" style="margin-top: 8px;">Small</span>
+          </div>
+          <div class="blob blob-md">
+            <div class="blob-body">
+              <div class="blob-face">
+                <div class="blob-eye"></div>
+                <div class="blob-eye"></div>
+              </div>
+              <div class="blob-mouth"></div>
+            </div>
+            <span class="type-caption" style="margin-top: 8px;">Medium</span>
+          </div>
+          <div class="blob blob-lg">
+            <div class="blob-body">
+              <div class="blob-face">
+                <div class="blob-eye"></div>
+                <div class="blob-eye"></div>
+              </div>
+              <div class="blob-mouth"></div>
+            </div>
+            <span class="type-caption" style="margin-top: 8px;">Large</span>
+          </div>
+          <div class="blob blob-xl">
+            <div class="blob-body">
+              <div class="blob-face">
+                <div class="blob-eye"></div>
+                <div class="blob-eye"></div>
+              </div>
+              <div class="blob-mouth"></div>
+            </div>
+            <span class="type-caption" style="margin-top: 8px;">Extra Large</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Emotions</h3>
+        <div class="row">
+          <div class="blob blob-lg">
+            <div class="blob-body">
+              <div class="blob-face">
+                <div class="blob-eye"></div>
+                <div class="blob-eye"></div>
+              </div>
+              <div class="blob-mouth"></div>
+            </div>
+            <span class="type-caption" style="margin-top: 8px;">Neutral</span>
+          </div>
+          <div class="blob blob-lg happy">
+            <div class="blob-body">
+              <div class="blob-face">
+                <div class="blob-eye"></div>
+                <div class="blob-eye"></div>
+              </div>
+              <div class="blob-mouth"></div>
+            </div>
+            <span class="type-caption" style="margin-top: 8px;">Happy</span>
+          </div>
+          <div class="blob blob-lg sad">
+            <div class="blob-body">
+              <div class="blob-face">
+                <div class="blob-eye"></div>
+                <div class="blob-eye"></div>
+              </div>
+              <div class="blob-mouth"></div>
+            </div>
+            <span class="type-caption" style="margin-top: 8px;">Sad</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         BUTTONS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <h2 class="section-title">Buttons</h2>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Variants</h3>
+        <div class="row">
+          <button class="btn btn-primary">Continue</button>
+          <button class="btn btn-secondary">Create an account</button>
+          <button class="btn btn-ghost">Log in</button>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Sizes</h3>
+        <div class="row">
+          <button class="btn btn-primary btn-sm">Small</button>
+          <button class="btn btn-primary">Medium</button>
+          <button class="btn btn-primary btn-lg">Large</button>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Icon Buttons</h3>
+        <div class="row">
+          <button class="btn btn-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </button>
+          <button class="btn btn-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+          <button class="btn btn-icon" style="background: var(--color-ink); color: white;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         CARDS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <h2 class="section-title">Cards</h2>
+
+      <div class="grid">
+        <div class="glass-card">
+          <h3 class="type-h3" style="margin-bottom: 8px;">Glass Card</h3>
+          <p class="type-body-sm" style="color: var(--text-secondary);">Glassmorphism effect with backdrop blur</p>
+        </div>
+
+        <div class="card-honey">
+          <h3 class="type-h3" style="margin-bottom: 8px;">Honey Card</h3>
+          <p class="type-body-sm">Primary action cards, warm energy</p>
+        </div>
+
+        <div class="card-sage">
+          <h3 class="type-h3" style="margin-bottom: 8px;">Sage Card</h3>
+          <p class="type-body-sm">Nature, balance, recovery</p>
+        </div>
+
+        <div class="card-lavender">
+          <h3 class="type-h3" style="margin-bottom: 8px;">Lavender Card</h3>
+          <p class="type-body-sm">Calm, safety, peace</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         MOOD SELECTION
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <h2 class="section-title">Mood Selection</h2>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Mood Options (Radio)</h3>
+        <div style="display: flex; flex-direction: column; gap: 12px; max-width: 280px;">
+          <div class="mood-option selected">
+            <span class="mood-label">Great</span>
+            <span class="mood-check"></span>
+          </div>
+          <div class="mood-option">
+            <span class="mood-label">Good</span>
+            <span class="mood-check"></span>
+          </div>
+          <div class="mood-option">
+            <span class="mood-label">Neutral</span>
+            <span class="mood-check"></span>
+          </div>
+          <div class="mood-option">
+            <span class="mood-label">Bad</span>
+            <span class="mood-check"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Mood Scale (Faces)</h3>
+        <div class="row" style="gap: 24px;">
+          <div style="text-align: center;">
+            <div class="blob blob-md happy">
+              <div class="blob-body">
+                <div class="blob-face"><div class="blob-eye"></div><div class="blob-eye"></div></div>
+                <div class="blob-mouth"></div>
+              </div>
+            </div>
+            <div class="type-caption" style="margin-top: 8px;">Great</div>
+          </div>
+          <div style="text-align: center;">
+            <div class="blob blob-md">
+              <div class="blob-body">
+                <div class="blob-face"><div class="blob-eye"></div><div class="blob-eye"></div></div>
+                <div class="blob-mouth"></div>
+              </div>
+            </div>
+            <div class="type-caption" style="margin-top: 8px;">Good</div>
+          </div>
+          <div style="text-align: center;">
+            <div class="blob blob-md">
+              <div class="blob-body">
+                <div class="blob-face"><div class="blob-eye"></div><div class="blob-eye"></div></div>
+                <div class="blob-mouth"></div>
+              </div>
+            </div>
+            <div class="type-caption" style="margin-top: 8px;">Neutral</div>
+          </div>
+          <div style="text-align: center;">
+            <div class="blob blob-md sad">
+              <div class="blob-body">
+                <div class="blob-face"><div class="blob-eye"></div><div class="blob-eye"></div></div>
+                <div class="blob-mouth"></div>
+              </div>
+            </div>
+            <div class="type-caption" style="margin-top: 8px;">Bad</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         EMOTION CHIPS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <h2 class="section-title">Emotion Chips</h2>
+
+      <div class="card-honey" style="max-width: 400px; padding: 24px;">
+        <h3 class="type-h3" style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+          <span class="section-number">1</span>
+          Emotions
+        </h3>
+        <div class="emotion-grid">
+          <div class="emotion-chip selected">
+            <div class="emotion-face happy">
+              <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+              <div class="mouth"></div>
+            </div>
+            <span class="emotion-label">Happy</span>
+          </div>
+          <div class="emotion-chip">
+            <div class="emotion-face happy">
+              <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+              <div class="mouth"></div>
+            </div>
+            <span class="emotion-label">Excited</span>
+          </div>
+          <div class="emotion-chip">
+            <div class="emotion-face happy">
+              <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+              <div class="mouth"></div>
+            </div>
+            <span class="emotion-label">Grateful</span>
+          </div>
+          <div class="emotion-chip">
+            <div class="emotion-face">
+              <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+              <div class="mouth"></div>
+            </div>
+            <span class="emotion-label">Relaxed</span>
+          </div>
+          <div class="emotion-chip">
+            <div class="emotion-face">
+              <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+              <div class="mouth"></div>
+            </div>
+            <span class="emotion-label">Tired</span>
+          </div>
+          <div class="emotion-chip">
+            <div class="emotion-face">
+              <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+              <div class="mouth"></div>
+            </div>
+            <span class="emotion-label">Stressed</span>
+          </div>
+          <div class="emotion-chip">
+            <div class="emotion-face">
+              <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+              <div class="mouth"></div>
+            </div>
+            <span class="emotion-label">Bored</span>
+          </div>
+          <div class="emotion-chip">
+            <div class="emotion-face sad">
+              <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+              <div class="mouth"></div>
+            </div>
+            <span class="emotion-label">Anxious</span>
+          </div>
+          <div class="emotion-chip">
+            <div class="emotion-face">
+              <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+              <div class="mouth"></div>
+            </div>
+            <span class="emotion-label">Angry</span>
+          </div>
+          <div class="emotion-chip">
+            <div class="emotion-face sad">
+              <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
+              <div class="mouth"></div>
+            </div>
+            <span class="emotion-label">Sad</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         EXPANDABLE SECTIONS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <h2 class="section-title">Expandable Sections</h2>
+
+      <div style="display: flex; flex-direction: column; gap: 12px; max-width: 400px;">
+        <div class="section-header-component">
+          <div class="section-header-left">
+            <span class="section-number">1</span>
+            <span class="section-header-title">Emotions</span>
+          </div>
+          <div class="section-header-actions">
+            <button class="action-btn">+</button>
+            <button class="action-btn">^</button>
+          </div>
+        </div>
+        <div class="section-header-component">
+          <div class="section-header-left">
+            <span class="section-number">1</span>
+            <span class="section-header-title">Quick Note</span>
+          </div>
+          <div class="section-header-actions">
+            <button class="action-btn">+</button>
+            <button class="action-btn">^</button>
+          </div>
+        </div>
+        <div class="section-header-component">
+          <div class="section-header-left">
+            <span class="section-number">4</span>
+            <span class="section-header-title">Photo</span>
+          </div>
+          <div class="section-header-actions">
+            <button class="action-btn">+</button>
+            <button class="action-btn">^</button>
+          </div>
+        </div>
+        <div class="section-header-component">
+          <div class="section-header-left">
+            <span class="section-number">2</span>
+            <span class="section-header-title">Voice Memo</span>
+          </div>
+          <div class="section-header-actions">
+            <button class="action-btn">+</button>
+            <button class="action-btn">^</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         STREAK BADGE
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <h2 class="section-title">Streak & Calendar</h2>
+
+      <div class="streak-badge">
+        <div class="streak-content">
+          <h3>14 Days streak, Keep it up</h3>
+          <p>15 Days until your next milestone!</p>
+          <div class="week-calendar">
+            <div class="week-day">
+              <span class="day-label">S</span>
+              <div class="day-mood">
+                <div class="mini-eyes"><div class="mini-eye"></div><div class="mini-eye"></div></div>
+                <div class="mini-mouth"></div>
+              </div>
+            </div>
+            <div class="week-day">
+              <span class="day-label">T</span>
+              <div class="day-mood">
+                <div class="mini-eyes"><div class="mini-eye"></div><div class="mini-eye"></div></div>
+                <div class="mini-mouth"></div>
+              </div>
+            </div>
+            <div class="week-day">
+              <span class="day-label">M</span>
+              <div class="day-mood">
+                <div class="mini-eyes"><div class="mini-eye"></div><div class="mini-eye"></div></div>
+                <div class="mini-mouth"></div>
+              </div>
+            </div>
+            <div class="week-day today">
+              <span class="day-label">W</span>
+              <div class="day-mood">
+                <div class="mini-eyes"><div class="mini-eye"></div><div class="mini-eye"></div></div>
+                <div class="mini-mouth"></div>
+              </div>
+            </div>
+            <div class="week-day">
+              <span class="day-label">T</span>
+              <div class="day-mood">
+                <div class="mini-eyes"><div class="mini-eye"></div><div class="mini-eye"></div></div>
+                <div class="mini-mouth"></div>
+              </div>
+            </div>
+            <div class="week-day future">
+              <span class="day-label">F</span>
+              <div class="day-mood">
+                <div class="mini-eyes"><div class="mini-eye"></div><div class="mini-eye"></div></div>
+                <div class="mini-mouth"></div>
+              </div>
+            </div>
+            <div class="week-day future">
+              <span class="day-label">S</span>
+              <div class="day-mood">
+                <div class="mini-eyes"><div class="mini-eye"></div><div class="mini-eye"></div></div>
+                <div class="mini-mouth"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         MEDIA CARDS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <h2 class="section-title">Media Cards</h2>
+
+      <div class="row">
+        <div>
+          <div class="media-card">
+            <div class="media-content">
+              <span class="media-badge">88.7K</span>
+              <div class="media-blob">
+                <div class="blob blob-lg">
+                  <div class="blob-body">
+                    <div class="blob-face"><div class="blob-eye"></div><div class="blob-eye"></div></div>
+                    <div class="blob-mouth"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="media-play">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="media-info">
+            <div class="media-title">Calming Anxiety</div>
+            <div class="media-meta">
+              <span>3 min</span>
+              <span>Meditation</span>
+              <span>Tamara Levitt</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="media-card" style="background: var(--gradient-sage);">
+            <div class="media-content">
+              <span class="media-badge">47.6K</span>
+              <div class="media-blob">
+                <div class="blob blob-lg happy">
+                  <div class="blob-body" style="background: var(--gradient-sage);">
+                    <div class="blob-face"><div class="blob-eye"></div><div class="blob-eye"></div></div>
+                    <div class="blob-mouth"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="media-play">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="media-info">
+            <div class="media-title">Guided Breathing</div>
+            <div class="media-meta">
+              <span>10 min</span>
+              <span>Breathing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         CHAT
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <h2 class="section-title">Chat Interface</h2>
+
+      <div class="chat-container">
+        <div class="chat-message user">
+          Frankie, please recommend me some quick meditation to reduce anxiety, thanks.
+        </div>
+        <div class="chat-message assistant">
+          Absolutely, here is the most popular short meditation practise for anxiety, hope you enjoy it :)
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         INPUTS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <h2 class="section-title">Inputs</h2>
+
+      <div class="row">
+        <input class="input" type="text" placeholder="I feel...">
+        <input class="input" type="text" placeholder="Talk to me">
+        <input class="input" type="email" placeholder="Email">
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         BOTTOM NAVIGATION
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <h2 class="section-title">Bottom Navigation</h2>
+
+      <div class="bottom-nav">
+        <div class="bottom-nav-item active">
+          <span class="nav-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          </span>
+          <span>Home</span>
+        </div>
+        <div class="bottom-nav-item">
+          <span class="nav-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.8 20c-1.4 0-2.8-.7-3.8-2-.3-.5-.8-.7-1.2-.3-.5.3-.6.8-.3 1.2 1.3 1.8 3.2 3.1 5.3 3.1 3.3 0 6-3.1 6-7s-2.7-7-6-7c-2.1 0-4 1.3-5.3 3.1-.3.4-.2 1 .3 1.2.4.3 1 .2 1.2-.3 1-1.3 2.4-2 3.8-2 2.2 0 4 2.2 4 5s-1.8 5-4 5z"/><path d="M12 8c-4 0-8 3-8 8h2c0-4 3-6 6-6V8z"/></svg>
+          </span>
+          <span>Sleep</span>
+        </div>
+        <div class="bottom-nav-item">
+          <span class="nav-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </span>
+          <span>Search</span>
+        </div>
+        <div class="bottom-nav-item">
+          <span class="nav-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          <span>Profile</span>
+        </div>
+        <div class="bottom-nav-item">
+          <span class="nav-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </span>
+          <span>Premium</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SPACING & RADIUS
+         ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="section">
+      <h2 class="section-title">Spacing & Radius</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3 class="subsection-title">Spacing Scale</h3>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div class="spacing-box" style="width: 4px; height: 24px;">1</div>
+            <div class="spacing-box" style="width: 8px; height: 24px;">2</div>
+            <div class="spacing-box" style="width: 12px; height: 24px;">3</div>
+            <div class="spacing-box" style="width: 16px; height: 24px;">4</div>
+            <div class="spacing-box" style="width: 20px; height: 24px;">5</div>
+            <div class="spacing-box" style="width: 24px; height: 24px;">6</div>
+            <div class="spacing-box" style="width: 32px; height: 24px;">8</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="subsection-title">Border Radius</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+            <div class="radius-box" style="border-radius: 8px;">sm</div>
+            <div class="radius-box" style="border-radius: 12px;">md</div>
+            <div class="radius-box" style="border-radius: 16px;">lg</div>
+            <div class="radius-box" style="border-radius: 20px;">xl</div>
+            <div class="radius-box" style="border-radius: 24px;">2xl</div>
+            <div class="radius-box" style="border-radius: 9999px;">full</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="showcase-footer">
+      <p>Glimmer Design System v1.0.0</p>
+      <p style="font-size: 14px; margin-top: 8px;">Glassmorphism + Soft Gradients + Emotional Characters</p>
+    </footer>
+  </div>
+</body>
+</html>
