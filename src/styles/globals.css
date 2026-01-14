@@ -1,0 +1,559 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BALANSITY DESIGN SYSTEM
+   Foundation Tokens & CSS Variables
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@layer base {
+  /* ═══════════════════════════════════════════════════════
+     PRIMITIVE TOKENS
+     Raw values - never use directly in components
+     ═══════════════════════════════════════════════════════ */
+
+  :root {
+    /* Mint (Primary Background Family) */
+    --primitive-mint-50: 180 35% 97%;
+    --primitive-mint-100: 180 35% 93%;
+    --primitive-mint-200: 180 32% 85%;
+    --primitive-mint-300: 180 30% 75%;
+    --primitive-mint-400: 180 28% 65%;
+    --primitive-mint-500: 180 25% 55%;
+
+    /* Lavender (Secondary Accent) */
+    --primitive-lavender-50: 260 40% 97%;
+    --primitive-lavender-100: 260 40% 93%;
+    --primitive-lavender-200: 260 35% 85%;
+    --primitive-lavender-300: 260 30% 75%;
+    --primitive-lavender-400: 260 25% 65%;
+    --primitive-lavender-500: 260 20% 55%;
+
+    /* Coral (Accent) */
+    --primitive-coral-50: 15 85% 97%;
+    --primitive-coral-100: 15 85% 93%;
+    --primitive-coral-200: 15 80% 85%;
+    --primitive-coral-300: 15 75% 75%;
+    --primitive-coral-400: 15 70% 65%;
+    --primitive-coral-500: 15 65% 55%;
+
+    /* Yellow (Reward/Gamification) */
+    --primitive-yellow-50: 45 95% 97%;
+    --primitive-yellow-100: 45 95% 90%;
+    --primitive-yellow-200: 45 90% 80%;
+    --primitive-yellow-300: 45 85% 70%;
+    --primitive-yellow-400: 45 80% 60%;
+    --primitive-yellow-500: 45 75% 50%;
+
+    /* Green (Success) */
+    --primitive-green-50: 145 60% 97%;
+    --primitive-green-100: 145 55% 90%;
+    --primitive-green-200: 145 50% 75%;
+    --primitive-green-300: 145 45% 60%;
+    --primitive-green-400: 145 50% 45%;
+    --primitive-green-500: 145 55% 35%;
+
+    /* Red (Error) */
+    --primitive-red-50: 0 70% 97%;
+    --primitive-red-100: 0 70% 93%;
+    --primitive-red-200: 0 65% 85%;
+    --primitive-red-300: 0 60% 70%;
+    --primitive-red-400: 0 65% 55%;
+    --primitive-red-500: 0 70% 45%;
+
+    /* Neutral (Gray Scale) */
+    --primitive-gray-0: 0 0% 100%;
+    --primitive-gray-50: 220 15% 98%;
+    --primitive-gray-100: 220 15% 95%;
+    --primitive-gray-200: 220 12% 90%;
+    --primitive-gray-300: 220 10% 80%;
+    --primitive-gray-400: 220 8% 65%;
+    --primitive-gray-500: 220 6% 50%;
+    --primitive-gray-600: 220 8% 40%;
+    --primitive-gray-700: 220 10% 30%;
+    --primitive-gray-800: 220 12% 20%;
+    --primitive-gray-900: 220 15% 10%;
+    --primitive-gray-950: 220 20% 5%;
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     SEMANTIC TOKENS - LIGHT THEME
+     Use these in components
+     ═══════════════════════════════════════════════════════ */
+
+  :root {
+    /* ─────────────────────────────────────────────────────
+       BACKGROUNDS
+       ───────────────────────────────────────────────────── */
+    --color-background: var(--primitive-mint-100);
+    --color-surface-primary: var(--primitive-gray-0);
+    --color-surface-secondary: var(--primitive-gray-50);
+    --color-surface-tertiary: var(--primitive-gray-100);
+    --color-surface-elevated: var(--primitive-gray-0);
+    --color-overlay: 220 15% 10% / 0.5;
+
+    /* ─────────────────────────────────────────────────────
+       TEXT
+       ───────────────────────────────────────────────────── */
+    --color-text-primary: var(--primitive-gray-900);
+    --color-text-secondary: var(--primitive-gray-600);
+    --color-text-tertiary: var(--primitive-gray-400);
+    --color-text-disabled: var(--primitive-gray-300);
+    --color-text-inverse: var(--primitive-gray-0);
+    --color-text-on-accent: var(--primitive-gray-0);
+
+    /* ─────────────────────────────────────────────────────
+       BORDERS
+       ───────────────────────────────────────────────────── */
+    --color-border-default: var(--primitive-gray-200);
+    --color-border-subtle: var(--primitive-gray-100);
+    --color-border-strong: var(--primitive-gray-300);
+    --color-border-focus: var(--primitive-mint-400);
+
+    /* ─────────────────────────────────────────────────────
+       BRAND / ACCENT
+       ───────────────────────────────────────────────────── */
+    --color-primary: var(--primitive-gray-900);
+    --color-primary-hover: var(--primitive-gray-800);
+    --color-primary-active: var(--primitive-gray-950);
+
+    --color-secondary: var(--primitive-lavender-200);
+    --color-secondary-hover: var(--primitive-lavender-300);
+    --color-secondary-active: var(--primitive-lavender-400);
+
+    --color-accent: var(--primitive-coral-400);
+    --color-accent-hover: var(--primitive-coral-500);
+    --color-accent-active: var(--primitive-coral-300);
+    --color-accent-subtle: var(--primitive-coral-100);
+
+    /* ─────────────────────────────────────────────────────
+       STATUS
+       ───────────────────────────────────────────────────── */
+    --color-success: var(--primitive-green-400);
+    --color-success-subtle: var(--primitive-green-50);
+    --color-success-text: var(--primitive-green-500);
+
+    --color-warning: var(--primitive-yellow-400);
+    --color-warning-subtle: var(--primitive-yellow-50);
+    --color-warning-text: var(--primitive-yellow-500);
+
+    --color-error: var(--primitive-red-400);
+    --color-error-subtle: var(--primitive-red-50);
+    --color-error-text: var(--primitive-red-500);
+
+    --color-info: var(--primitive-mint-400);
+    --color-info-subtle: var(--primitive-mint-100);
+    --color-info-text: var(--primitive-mint-500);
+
+    /* ─────────────────────────────────────────────────────
+       INTERACTIVE
+       ───────────────────────────────────────────────────── */
+    --color-interactive: var(--primitive-gray-900);
+    --color-interactive-hover: var(--primitive-gray-700);
+    --color-interactive-visited: var(--primitive-gray-600);
+
+    /* ─────────────────────────────────────────────────────
+       GAMIFICATION
+       ───────────────────────────────────────────────────── */
+    --color-reward: var(--primitive-yellow-300);
+    --color-reward-glow: var(--primitive-yellow-200);
+    --color-progress: var(--primitive-green-400);
+    --color-streak: var(--primitive-coral-400);
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     SEMANTIC TOKENS - DARK THEME
+     ═══════════════════════════════════════════════════════ */
+
+  .dark {
+    --color-background: var(--primitive-gray-950);
+    --color-surface-primary: var(--primitive-gray-900);
+    --color-surface-secondary: var(--primitive-gray-800);
+    --color-surface-tertiary: var(--primitive-gray-700);
+    --color-surface-elevated: var(--primitive-gray-800);
+    --color-overlay: 0 0% 0% / 0.7;
+
+    --color-text-primary: var(--primitive-gray-50);
+    --color-text-secondary: var(--primitive-gray-300);
+    --color-text-tertiary: var(--primitive-gray-500);
+    --color-text-disabled: var(--primitive-gray-600);
+    --color-text-inverse: var(--primitive-gray-900);
+
+    --color-border-default: var(--primitive-gray-700);
+    --color-border-subtle: var(--primitive-gray-800);
+    --color-border-strong: var(--primitive-gray-600);
+
+    --color-primary: var(--primitive-gray-0);
+    --color-primary-hover: var(--primitive-gray-100);
+    --color-primary-active: var(--primitive-gray-200);
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     TYPOGRAPHY TOKENS
+     ═══════════════════════════════════════════════════════ */
+
+  :root {
+    /* Font Families */
+    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "Geist Mono", "SF Mono", "Fira Code", "Fira Mono", Consolas,
+      monospace;
+    --font-display: var(--font-sans);
+
+    /* Font Sizes - Display */
+    --font-size-display-xl: 4.5rem;
+    --font-size-display-lg: 3.75rem;
+    --font-size-display-md: 3rem;
+    --font-size-display-sm: 2.25rem;
+
+    /* Font Sizes - Headings */
+    --font-size-h1: 2rem;
+    --font-size-h2: 1.75rem;
+    --font-size-h3: 1.5rem;
+    --font-size-h4: 1.25rem;
+    --font-size-h5: 1.125rem;
+    --font-size-h6: 1rem;
+
+    /* Font Sizes - Body */
+    --font-size-body-lg: 1.125rem;
+    --font-size-body-md: 1rem;
+    --font-size-body-sm: 0.875rem;
+
+    /* Font Sizes - UI */
+    --font-size-ui-lg: 1rem;
+    --font-size-ui-md: 0.875rem;
+    --font-size-ui-sm: 0.75rem;
+    --font-size-ui-xs: 0.6875rem;
+
+    /* Line Heights */
+    --line-height-none: 1;
+    --line-height-tight: 1.1;
+    --line-height-snug: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+    --line-height-loose: 2;
+
+    /* Letter Spacing */
+    --letter-spacing-tighter: -0.04em;
+    --letter-spacing-tight: -0.02em;
+    --letter-spacing-normal: 0;
+    --letter-spacing-wide: 0.02em;
+    --letter-spacing-wider: 0.04em;
+
+    /* Font Weights */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+  }
+
+  /* Responsive Typography */
+  @media (max-width: 1023px) {
+    :root {
+      --font-size-display-xl: 3.5rem;
+      --font-size-display-lg: 2.75rem;
+      --font-size-h1: 1.875rem;
+      --font-size-h2: 1.625rem;
+    }
+  }
+
+  @media (max-width: 639px) {
+    :root {
+      --font-size-display-xl: 2.5rem;
+      --font-size-display-lg: 2rem;
+      --font-size-h1: 1.75rem;
+      --font-size-h2: 1.5rem;
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     SPACING TOKENS
+     ═══════════════════════════════════════════════════════ */
+
+  :root {
+    /* Base Scale */
+    --spacing-0: 0;
+    --spacing-px: 1px;
+    --spacing-0-5: 0.125rem;
+    --spacing-1: 0.25rem;
+    --spacing-1-5: 0.375rem;
+    --spacing-2: 0.5rem;
+    --spacing-2-5: 0.625rem;
+    --spacing-3: 0.75rem;
+    --spacing-3-5: 0.875rem;
+    --spacing-4: 1rem;
+    --spacing-5: 1.25rem;
+    --spacing-6: 1.5rem;
+    --spacing-7: 1.75rem;
+    --spacing-8: 2rem;
+    --spacing-9: 2.25rem;
+    --spacing-10: 2.5rem;
+    --spacing-11: 2.75rem;
+    --spacing-12: 3rem;
+    --spacing-14: 3.5rem;
+    --spacing-16: 4rem;
+    --spacing-20: 5rem;
+    --spacing-24: 6rem;
+    --spacing-28: 7rem;
+    --spacing-32: 8rem;
+
+    /* Semantic - Component */
+    --spacing-component-xs: var(--spacing-1);
+    --spacing-component-sm: var(--spacing-2);
+    --spacing-component-md: var(--spacing-3);
+    --spacing-component-lg: var(--spacing-4);
+    --spacing-component-xl: var(--spacing-6);
+
+    /* Semantic - Layout */
+    --spacing-layout-xs: var(--spacing-4);
+    --spacing-layout-sm: var(--spacing-6);
+    --spacing-layout-md: var(--spacing-8);
+    --spacing-layout-lg: var(--spacing-12);
+    --spacing-layout-xl: var(--spacing-16);
+    --spacing-layout-2xl: var(--spacing-24);
+
+    /* Semantic - Section */
+    --spacing-section-sm: var(--spacing-12);
+    --spacing-section-md: var(--spacing-16);
+    --spacing-section-lg: var(--spacing-24);
+    --spacing-section-xl: var(--spacing-32);
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     BORDER RADIUS TOKENS
+     ═══════════════════════════════════════════════════════ */
+
+  :root {
+    /* Scale */
+    --radius-none: 0;
+    --radius-xs: 0.125rem;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.25rem;
+    --radius-3xl: 1.5rem;
+    --radius-full: 9999px;
+
+    /* Semantic */
+    --radius-button: var(--radius-lg);
+    --radius-button-pill: var(--radius-full);
+    --radius-input: var(--radius-lg);
+    --radius-card: var(--radius-2xl);
+    --radius-modal: var(--radius-3xl);
+    --radius-badge: var(--radius-full);
+    --radius-avatar: var(--radius-full);
+    --radius-thumbnail: var(--radius-xl);
+    --radius-tooltip: var(--radius-md);
+    --radius-checkbox: var(--radius-sm);
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     SHADOW TOKENS
+     ═══════════════════════════════════════════════════════ */
+
+  :root {
+    --shadow-none: none;
+
+    --shadow-xs: 0 1px 2px 0 hsl(var(--primitive-gray-900) / 0.03);
+
+    --shadow-sm: 0 1px 3px 0 hsl(var(--primitive-gray-900) / 0.04),
+      0 1px 2px -1px hsl(var(--primitive-gray-900) / 0.03);
+
+    --shadow-md: 0 4px 6px -1px hsl(var(--primitive-gray-900) / 0.05),
+      0 2px 4px -2px hsl(var(--primitive-gray-900) / 0.03);
+
+    --shadow-lg: 0 10px 15px -3px hsl(var(--primitive-gray-900) / 0.06),
+      0 4px 6px -4px hsl(var(--primitive-gray-900) / 0.04);
+
+    --shadow-xl: 0 20px 25px -5px hsl(var(--primitive-gray-900) / 0.08),
+      0 8px 10px -6px hsl(var(--primitive-gray-900) / 0.05);
+
+    --shadow-2xl: 0 25px 50px -12px hsl(var(--primitive-gray-900) / 0.15);
+
+    --shadow-inner: inset 0 2px 4px 0 hsl(var(--primitive-gray-900) / 0.04);
+
+    /* Semantic */
+    --shadow-card: var(--shadow-md);
+    --shadow-card-hover: var(--shadow-lg);
+    --shadow-button: var(--shadow-sm);
+    --shadow-button-hover: var(--shadow-md);
+    --shadow-dropdown: var(--shadow-lg);
+    --shadow-modal: var(--shadow-xl);
+    --shadow-toast: var(--shadow-lg);
+    --shadow-input-focus: 0 0 0 3px hsl(var(--color-border-focus) / 0.2);
+
+    /* Colored Shadows */
+    --shadow-reward: 0 4px 14px -2px hsl(var(--primitive-yellow-300) / 0.4);
+    --shadow-success: 0 4px 14px -2px hsl(var(--primitive-green-400) / 0.3);
+    --shadow-accent: 0 4px 14px -2px hsl(var(--primitive-coral-400) / 0.3);
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     ANIMATION TOKENS
+     ═══════════════════════════════════════════════════════ */
+
+  :root {
+    /* Duration */
+    --duration-instant: 0ms;
+    --duration-fast: 100ms;
+    --duration-normal: 200ms;
+    --duration-slow: 300ms;
+    --duration-slower: 500ms;
+    --duration-slowest: 700ms;
+
+    /* Easing */
+    --ease-linear: linear;
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     Z-INDEX TOKENS
+     ═══════════════════════════════════════════════════════ */
+
+  :root {
+    --z-base: 0;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-fixed: 300;
+    --z-modal-backdrop: 400;
+    --z-modal: 500;
+    --z-popover: 600;
+    --z-tooltip: 700;
+    --z-toast: 800;
+    --z-max: 9999;
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     BASE STYLES
+     ═══════════════════════════════════════════════════════ */
+
+  *,
+  *::before,
+  *::after {
+    border-color: hsl(var(--color-border-default));
+  }
+
+  html {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: var(--line-height-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: hsl(var(--color-background));
+    color: hsl(var(--color-text-primary));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Focus visible for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid hsl(var(--color-border-focus));
+    outline-offset: 2px;
+  }
+
+  /* Reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   UTILITY CLASSES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@layer utilities {
+  /* Safe area insets for mobile */
+  .safe-area-inset-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-area-inset-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-area-inset-right {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Touch action utilities */
+  .touch-pan-x {
+    touch-action: pan-x;
+  }
+
+  .touch-pan-y {
+    touch-action: pan-y;
+  }
+
+  /* Scrollbar hiding */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Text balance for headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Container query support placeholder */
+  .container-type-inline {
+    container-type: inline-size;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   EMOTIONAL THEME VARIANTS
+   Optional theme "moods" for different contexts
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@layer base {
+  /* Calm variant - softer, more muted */
+  .theme-calm {
+    --color-accent: var(--primitive-lavender-300);
+    --color-accent-hover: var(--primitive-lavender-400);
+    --shadow-card: var(--shadow-sm);
+    --shadow-card-hover: var(--shadow-md);
+    --radius-button: var(--radius-md);
+  }
+
+  /* Focused variant - minimal, clean */
+  .theme-focused {
+    --color-background: var(--primitive-gray-50);
+    --color-surface-primary: var(--primitive-gray-0);
+    --shadow-card: none;
+    --shadow-card-hover: var(--shadow-sm);
+    --radius-card: var(--radius-lg);
+  }
+
+  /* Celebration variant - extra playful */
+  .theme-celebration {
+    --color-background: var(--primitive-yellow-100);
+    --color-accent: var(--primitive-coral-500);
+    --shadow-card: var(--shadow-lg);
+    --shadow-reward: 0 8px 24px -4px hsl(var(--primitive-yellow-300) / 0.5);
+  }
+}
